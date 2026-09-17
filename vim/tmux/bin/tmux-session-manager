@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+get_list() {
+    local current_sess=""
+    if [[ -n "$TMUX" ]]; then
+        current_sess=$(tmux display-message -p '#S' 2>/dev/null)
+    fi
+
+    # 1. Active Tmux Sessions
+    if tmux list-sessions &>/dev/null; then
+        while IFS='|' read -r name windows attached path; do
+            local marker="  "
+            local state="detached"
+            if [[ "$attached" -gt 0 ]]; then
+                state="active"
+            fi
+            if [[ "$name" == "$current_sess" ]]; then
+                marker="★ "
+                state="current"
+            fi
+            printf "SESSION\t%s\t%s⚡ %-18s\t[%s win, %s] %s\n" "$name" "$marker" "$name" "$windows" "$state" "$path"
+        done < <(tmux list-sessions -F "#{session_name}|#{session_windows}|#{session_attached}|#{pane_current_path}" 2>/dev/null)
+    fi
+
+    # 2. Projects in ~/Projects
+    find ~/Projects -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort | while read -r dir; do
+        local dir_name=$(basename "$dir")
+        local safe_name=$(echo "$dir_name" | tr . _)
+        # Only show if not already an active session
+        if ! tmux has-session -t="$safe_name" 2>/dev/null; then
+            printf "PROJECT\t%s\t   📁 %-18s\t~/Projects/%s\n" "$dir" "$dir_name" "$dir_name"
+        fi
+    done
+}
+
+export -f get_list
+
+header="[ENTER] Switch/Attach  |  [CTRL-X] Kill Session  |  [CTRL-N] New Session"
+
+selected=$(get_list | fzf \
+    --reverse \
+    --delimiter=$'\t' \
+    --with-nth=3,4 \
+    --border=rounded \
+    --border-label=" 🧭 Tmux Sessiyalar Boshqaruvi " \
+    --prompt="⚡ Loyiha / Sessiya > " \
+    --header="$header" \
+    --bind "ctrl-x:execute-silent(bash -c 'if [[ {1} == \"SESSION\" ]]; then tmux kill-session -t {2}; fi')+reload(bash -c get_list)" \
+    --bind "ctrl-n:execute(bash -c 'read -p \"Yangi sessiya nomi: \" n; if [[ -n \"\$n\" ]]; then tmux new-session -ds \"\$n\" -c \"\$HOME/Projects\"; fi')+reload(bash -c get_list)"
+)
+
+if [[ -z "$selected" ]]; then
+    exit 0
+fi
+
+type=$(echo "$selected" | cut -f1)
+target=$(echo "$selected" | cut -f2)
+
+if [[ "$type" == "SESSION" ]]; then
+    sess_name="$target"
+elif [[ "$type" == "PROJECT" ]]; then
+    dir_path="$target"
+    sess_name=$(basename "$dir_path" | tr . _)
+    if ! tmux has-session -t="$sess_name" 2>/dev/null; then
+        tmux new-session -ds "$sess_name" -c "$dir_path"
+    fi
+else
+    exit 0
+fi
+
+if [[ -z "$TMUX" ]]; then
+    tmux attach-session -t "$sess_name"
+else
+    tmux switch-client -t "$sess_name"
+fi
