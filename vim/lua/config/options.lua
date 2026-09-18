@@ -28,20 +28,22 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 
 -- Eliminate 3-line bottom clutter:
-opt.cmdheight = 0        -- Hide command line when not typing ':' (removes middle line!)
+opt.cmdheight = 0        -- Hide command line when not typing ':'
 opt.showmode = false     -- Don't show '-- INSERT --' (statusline handles it)
 opt.laststatus = 3       -- Single unified global statusline
 
--- Timing (fast response)
+-- Timing (Balanced fast response without high CPU drain)
 opt.timeoutlen = 300
-opt.updatetime = 100
+opt.updatetime = 250
 
 -- Window splits
 opt.splitright = true
 opt.splitbelow = true
 
--- Clipboard integration
-opt.clipboard = "unnamedplus"
+-- Clipboard integration (Async to prevent Wayland wl-copy/paste blocking)
+vim.schedule(function()
+  opt.clipboard = "unnamedplus"
+end)
 
 -- Undo & Backup
 opt.undofile = true

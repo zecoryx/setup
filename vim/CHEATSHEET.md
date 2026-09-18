@@ -51,7 +51,7 @@ Terminal buyruqlari:
 
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Space + Space` | Fayl nomi bo'yicha tezkor qidiruv |
+| `Space + Space` | Fayl nomi bo'yicha tezkor qidiruv (Snacks Picker) |
 | `Space + f + g` | Kod ichidan matn qidirish (Live Grep) |
 | `Space + o` | Hozirgi fayl turgan papkani ochish (Oil explorer) |
 | `Space + e` | Loyihaning bosh ildiz papkasini ochish (Oil project root) |
@@ -64,26 +64,44 @@ Terminal buyruqlari:
 
 ---
 
-## 4. Kodlash, Terminallar va Tahrirlash
+## 4. LSP, Kod Navigatsiyasi va Diagnostika
+
+| Tugma | Vazifasi |
+| :--- | :--- |
+| `g + d` | Go to Definition (Funksiya/o'zgaruvchi yaratilgan joyiga sakrash) |
+| `g + D` | Go to Declaration (E'lon qilingan joyiga sakrash) |
+| `g + r` | References (Kodning qayerlarida ishlatilgani ro'yxati) |
+| `g + i` | Implementation (Interfeysning amalga oshirilgan joyi) |
+| `g + y` | Type Definition (Tip ta'riflangan joyi) |
+| `K` | Hover Docs (Funksiya/klass tipi va dokumentatsiyasini float oynada ko'rish) |
+| `g + K` | Signature Help (Funksiya qabul qiluvchi argumentlar ro'yxati) |
+| `Space + c + a` | Code Action (Auto-import, tezkor tuzatishlar va refaktoring) |
+| `Space + c + r` | Rename Symbol (Nomini butun loyiha bo'ylab xavfsiz o'zgartirish) |
+| `[ + d` / `] + d` | Oldingi / keyingi xatolik yoki ogohlantirishga sakrash |
+| `Space + c + d` | Kursordagi diagnostika (xatolik) matnini float oynada to'liq ko'rish |
+| `Space + t + h` | Inlay Hints (kod ustidagi yashirin tiplarni ko'rsatish/yashirish) |
+| `Space + x + x` | Loyihadagi barcha xatolar ro'yxati (Trouble diagnostics) |
+| `Space + c + s` | Funksiya va metodlar iyerarxiyasi (Trouble symbols) |
+
+---
+
+## 5. Kodlash, Terminallar va Tahrirlash
 
 | Tugma | Vazifasi |
 | :--- | :--- |
 | `s` | Flash: ko'rinib turgan istalgan so'zga 2 harfda sakrash |
-| `Space + c + f` | Kodni tekislash/formatlash (Pint yoki Prettier) |
+| `Space + c + f` | Kodni tekislash/formatlash (Conform: Prettier, Pint, Stylua) |
 | `Space + s + r` | Loyiha bo'yicha so'zlarni ommaviy almashtirish (Grug-far) |
-| `Space + x + x` | Loyihadagi xatolar ro'yxati (Trouble diagnostics) |
-| `Space + c + s` | Funksiya va metodlar ro'yxati (Trouble symbols) |
 | `Space + u` | O'zgarishlar tarixi daraxti (Undotree) |
 | `p` | Joylashtirish (Paste) |
-| `Space + p` (visualda) | Nusxalangan matnni almashtirib yubormasdan (xotirani buzmasdan) ustiga qo'yish |
+| `Space + p` (visualda) | Nusxalangan matnni almashtirib yubormasdan ustiga qo'yish |
 | `Ctrl + p` / `Ctrl + n` | `p` dan keyin: oldin nusxalangan matnlarni almashtirib ko'rish (Yanky) |
 | `Space + y` | Nusxalangan matnlar tarixi ro'yxati |
-| `Ctrl + \` | Terminalni ochish / yashirish (ToggleTerm) |
-| `1` .. `5` keyin `Ctrl + \` | 1-, 2-, 3-, 4-, 5-raqamli doimiy terminallar (jarayonlar o'chmaydi) |
+| `Ctrl + \` | Tezkor suzuvchi (float) terminalni ochish / yashirish (Snacks) |
 
 ---
 
-## 5. Git va GitHub
+## 6. Git va GitHub
 
 | Tugma | Vazifasi |
 | :--- | :--- |
@@ -99,7 +117,7 @@ Terminal buyruqlari:
 
 ---
 
-## 6. Asosiy Vim Tugmalari
+## 7. Asosiy Vim Tugmalari
 
 | Tugma | Vazifasi |
 | :--- | :--- |

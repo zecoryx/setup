@@ -9,7 +9,7 @@ return {
       quickfile = { enabled = true },
       statuscolumn = { enabled = false },
       scroll = { enabled = true },
-      words = { enabled = true },
+      words = { enabled = false },
       image = {
         enabled = true,
         doc = {
@@ -39,11 +39,43 @@ return {
       lazygit = {
         enabled = true,
       },
+      terminal = {
+        enabled = true,
+        win = {
+          style = "float",
+          border = "rounded",
+        },
+      },
     },
     config = function(_, opts)
       vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#252530" })
       vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = "#6e94b2" })
       require("snacks").setup(opts)
+
+      -- ⚡ Ctrl+\ => Snacks floating terminal (ToggleTerm o'rniga)
+      -- Snacks.terminal terminalni fonda keshlab qo'yadi,
+      -- ikkinchi ochilishda deyarli 0ms da paydo bo'ladi
+      vim.keymap.set({ "n", "t" }, "<C-\\>", function()
+        Snacks.terminal.toggle(nil, {
+          win = {
+            style = "float",
+            border = "rounded",
+            position = "float",
+          },
+        })
+      end, { desc = "Toggle Terminal (Snacks)", silent = true })
+
+      -- Terminal buferini yengil qilish
+      vim.api.nvim_create_autocmd("TermOpen", {
+        pattern = "term://*",
+        callback = function()
+          vim.opt_local.foldmethod = "manual"
+          vim.opt_local.relativenumber = false
+          vim.opt_local.number = false
+          vim.opt_local.signcolumn = "no"
+          vim.opt_local.spell = false
+        end,
+      })
     end,
     keys = {
       -- ⚡ Instant Find Files with <Space><Space>

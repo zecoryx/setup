@@ -19,20 +19,33 @@ return {
         nerd_font_variant = "mono",
       },
       completion = {
+        accept = {
+          auto_brackets = {
+            enabled = true,
+          },
+        },
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 200,
+          auto_show_delay_ms = 150,
           window = { border = "rounded" },
         },
         menu = {
           border = "rounded",
+          draw = {
+            treesitter = { "lsp" },
+            columns = {
+              { "kind_icon", gap = 1 },
+              { "label", "label_description", gap = 1 },
+              { "source_name" },
+            },
+          },
         },
         list = {
           selection = { preselect = false, auto_insert = false },
         },
       },
       sources = {
-        default = { "snippets", "buffer", "path" },
+        default = { "lsp", "path", "snippets", "buffer" },
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
     },
