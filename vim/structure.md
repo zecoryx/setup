@@ -30,7 +30,9 @@ vim/
 │   │   └── autocmds.lua       # Avtomatik hodisalar (matndan nusxa olganda miltillash va h.k.)
 │   │
 │   └── plugins/               # Har bir plagin uchun alohida modulli fayllar
-│       ├── terminal.lua       # ToggleTerm — suzuvchi va doimiy terminallar
+│       ├── lsp.lua            # Mason, nvim-lspconfig, til serverlari, auto-import va diagnostika
+│       ├── colors.lua         # TailwindCSS va HEX/RGB ranglar prevyusi
+│       ├── terminal.lua       # Snacks suzuvchi terminal
 │       ├── oil.lua            # Oil.nvim — fayllar boshqaruvchisi
 │       ├── snacks.lua         # Snacks.nvim — tezkor qidiruv (picker), lazygit
 │       ├── ui.lua             # Vague tema, statusline, bufferline, which-key
@@ -119,10 +121,23 @@ Yangi qisqa tugma qo'shish yoki mavjudlarini o'zgartirish:
 * **Qanday o'zgartiriladi:**
   - Agar faylni saqlaganda avtomatik tekislanishini xohlamasangiz, `format_on_save` blokini o'chirishingiz yoki `timeout_ms` ni o'zgartirishingiz mumkin.
 
-### 6. `completion.lua` (Blink.cmp avtoto'ldirish)
-* **Vazifasi:** Kod yozayotganda tezkor takliflar (IntelliSense) chiqarib berish.
+### 6. `lsp.lua` (LSP, Mason va Diagnostika)
+* **Vazifasi:** TypeScript, React, TailwindCSS, HTML, CSS, JSON va Lua uchun to'liq til serverlarini (LSP) o'rnatish va sozlash.
+  - `gd` — Go to Definition
+  - `K` — Hover documentation
+  - `Space + ca` — Code Action (auto-import va tezkor tuzatish)
+  - `Space + cr` — Rename symbol
+  - `[d` / `]d` — Oldingi/keyingi diagnostika xatosi
+  - Real-time qizil/sariq xatolik belgilari va chiziqlari.
+
+### 7. `colors.lua` (TailwindCSS va Ranglar Prevyusi)
+* **Vazifasi:** `nvim-highlight-colors` orqali kod ichidagi barcha TailwindCSS rang sinflari (masalan `bg-red-500`, `text-sky-400`) va HEX/RGB kodlarini real rangli fon bilan bo'yab ko'rsatish.
+
+### 8. `completion.lua` (Blink.cmp avtoto'ldirish)
+* **Vazifasi:** Kod yozayotganda LSP, snippetlar, fayl yo'llari va bufer so'zlaridan tezkor takliflar (IntelliSense), auto-import va parametrlar yordamchisi chiqarib berish.
 * **Nimalarni o'zgartirish mumkin:**
-  - Taklif oynasidagi tugmalar: `Enter` qabul qiladi, `Tab` keyingisiga o'tadi, `Ctrl + e` oynani yopadi.
+  - `sources.default` da qaysi manbalar ishlashi (`lsp`, `path`, `snippets`, `buffer`).
+  - Taklif oynasidagi tugmalar: `Enter` qabul qiladi, `Tab` keyingisiga o'tadi, `Ctrl + Space` takliflarni majburiy chaqiradi.
 
 ### 7. `git.lua` (Git va GitHub vositalari)
 * **Vazifasi:**
