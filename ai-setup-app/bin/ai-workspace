@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# AI Workspace Tmux Launcher
+AI_DECK_BIN="$HOME/Projects/setup/ai-setup-app/bin/ai-deck"
+
+# Ensure binary is executable
+chmod +x "$AI_DECK_BIN" 2>/dev/null || true
+
+# If we are inside Tmux
+if [ -n "$TMUX" ]; then
+    # Check if window named "ai" already exists
+    if tmux list-windows -F '#W' | grep -q "^ai$"; then
+        tmux select-window -t "ai"
+    else
+        tmux new-window -n "ai" -c "#{pane_current_path}" "$AI_DECK_BIN"
+    fi
+else
+    # Outside Tmux, run directly
+    exec "$AI_DECK_BIN"
+fi

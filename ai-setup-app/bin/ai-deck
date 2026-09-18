@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
+const entryPoint = resolve(currentDir, "../src/index.ts");
+
+import(entryPoint);
