@@ -1,5 +1,5 @@
 return {
-  -- 🎨 TailwindCSS & HEX/RGB real-time color highlights in buffer
+  -- Real-time color highlighting for TailwindCSS and HEX/RGB values
   {
     "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPre", "BufNewFile" },

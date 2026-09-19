@@ -1,4 +1,5 @@
 return {
+  -- High-performance completion engine with snippet support
   {
     "saghen/blink.cmp",
     lazy = false,

@@ -1,4 +1,5 @@
 return {
+  -- High-resolution SVG icon rendering for Ghostty and Kitty terminals
   {
     "Mirsmog/real-icons.nvim",
     lazy = false,
