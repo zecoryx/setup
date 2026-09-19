@@ -1,4 +1,5 @@
 return {
+  -- Code formatter integration (Prettier, Pint, Stylua)
   {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
@@ -10,7 +11,7 @@ return {
           require("conform").format({ async = true, lsp_fallback = false })
         end,
         mode = { "n", "v" },
-        desc = "Format Code",
+        desc = "Format buffer",
       },
     },
     opts = {

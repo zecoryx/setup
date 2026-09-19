@@ -1,4 +1,5 @@
 return {
+  -- File manager buffer editor
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -16,13 +17,13 @@ return {
         },
       },
       keymaps = {
-        ["<Esc>"] = "actions.parent",      -- Esc orqaga (yuqoriga) chiqadi
-        ["<BS>"] = "actions.parent",       -- Backspace orqaga
-        ["-"] = "actions.parent",          -- Minus orqaga
-        ["<CR>"] = "actions.select",       -- Enter papkaga kiradi yoki faylni ochadi
-        ["q"] = "actions.close",           -- q yopadi
+        ["<Esc>"] = "actions.parent",
+        ["<BS>"] = "actions.parent",
+        ["-"] = "actions.parent",
+        ["<CR>"] = "actions.select",
+        ["q"] = "actions.close",
         ["<C-c>"] = "actions.close",
-        ["g."] = "actions.toggle_hidden",  -- Yashirin fayllarni ko'rsatish/yashirish
+        ["g."] = "actions.toggle_hidden",
       },
       view_options = {
         show_hidden = false,

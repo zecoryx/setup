@@ -1,5 +1,5 @@
 return {
-  -- 🎨 Vague: Clean, low-contrast, non-rainbow dark theme (Grok / Antigravity / Cursor style)
+  -- Low-contrast dark colorscheme (Vague)
   {
     "vague2k/vague.nvim",
     lazy = false,
@@ -16,7 +16,7 @@ return {
     end,
   },
 
-  -- 💎 Symbols by Miguel Solorio (Exact minimal outline icons from your VSCode link)
+  -- Fallback file icons with custom overrides
   {
     "nvim-tree/nvim-web-devicons",
     lazy = false,
@@ -46,7 +46,7 @@ return {
     },
   },
 
-  -- 📑 Bufferline: Visual tabs for open buffers at the top
+  -- Buffer tabs at the top of the editor
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
@@ -68,7 +68,7 @@ return {
     },
   },
 
-  -- 📊 Minimalist Sleek Statusline (Matching Vague theme)
+  -- Minimalist global statusline
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -95,7 +95,7 @@ return {
     },
   },
 
-  -- ⚡ Tmux + Neovim Seamless Navigation (<C-h>, <C-j>, <C-k>, <C-l>)
+  -- Seamless navigation between Neovim splits and Tmux panes
   {
     "christoomey/vim-tmux-navigator",
     cmd = {
@@ -106,14 +106,14 @@ return {
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>", desc = "Navigate Left (Tmux/Nvim)" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>", desc = "Navigate Down (Tmux/Nvim)" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>", desc = "Navigate Up (Tmux/Nvim)" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>", desc = "Navigate Right (Tmux/Nvim)" },
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>", desc = "Navigate left (Tmux/Nvim)" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>", desc = "Navigate down (Tmux/Nvim)" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>", desc = "Navigate up (Tmux/Nvim)" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>", desc = "Navigate right (Tmux/Nvim)" },
     },
   },
 
-  -- 🗺️ Which-Key: Interactive menu for shortcuts
+  -- Interactive keybinding guide popup
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -124,19 +124,19 @@ return {
         padding = { 1, 2 },
       },
       spec = {
-        { "<leader><space>", desc = "Find Files (Instant)" },
-        { "<leader>o", desc = "Open Directory (Oil)" },
-        { "<leader>e", desc = "Project Explorer (Oil .)" },
-        { "<leader>v", desc = "Vertical Split" },
-        { "<leader>h", desc = "Horizontal Split" },
-        { "<leader>x", desc = "Close Split" },
-        { "<leader>m", desc = "Maximize Split" },
-        { "<leader>l", desc = "Lazy Plugins Manager" },
+        { "<leader><space>", desc = "Find files (Instant)" },
+        { "<leader>o", desc = "Open directory (Oil)" },
+        { "<leader>e", desc = "Project explorer (Oil)" },
+        { "<leader>v", desc = "Vertical split" },
+        { "<leader>h", desc = "Horizontal split" },
+        { "<leader>x", desc = "Close split" },
+        { "<leader>m", desc = "Maximize split" },
+        { "<leader>l", desc = "Lazy plugin manager" },
         { "<leader>b", group = "Buffers (Tabs)" },
         { "<leader>f", group = "Find / Search (Picker)" },
-        { "<leader>g", group = "Git Tools" },
-        { "<leader>s", group = "Search & Replace" },
-        { "<leader>c", group = "Code Actions / Format" },
+        { "<leader>g", group = "Git tools" },
+        { "<leader>s", group = "Search & replace" },
+        { "<leader>c", group = "Code actions / Format" },
         { "<leader>t", group = "Toggles" },
       },
     },

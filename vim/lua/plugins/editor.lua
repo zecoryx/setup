@@ -1,5 +1,5 @@
 return {
-  -- ⚡ Auto-close brackets, quotes, etc.
+  -- Auto-close pairs (brackets, quotes)
   {
     "echasnovski/mini.pairs",
     event = "InsertEnter",
@@ -7,7 +7,7 @@ return {
     opts = {},
   },
 
-  -- ⚡ Flash.nvim: Ultra-fast motion jump across visible screen
+  -- Fast motion navigation across visible buffer
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -24,7 +24,7 @@ return {
         function()
           require("flash").jump()
         end,
-        desc = "Flash Jump",
+        desc = "Flash jump",
       },
       {
         "S",
@@ -32,7 +32,7 @@ return {
         function()
           require("flash").treesitter()
         end,
-        desc = "Flash Treesitter Select",
+        desc = "Flash treesitter select",
       },
       {
         "r",
@@ -40,7 +40,7 @@ return {
         function()
           require("flash").remote()
         end,
-        desc = "Remote Flash",
+        desc = "Remote flash",
       },
       {
         "R",
@@ -48,12 +48,12 @@ return {
         function()
           require("flash").treesitter_search()
         end,
-        desc = "Treesitter Search",
+        desc = "Treesitter search",
       },
     },
   },
 
-  -- 🔍 Search & Replace across entire project
+  -- Project-wide search and replace
   {
     "MagicDuck/grug-far.nvim",
     cmd = "GrugFar",
@@ -63,14 +63,14 @@ return {
         function()
           require("grug-far").open()
         end,
-        desc = "Search and Replace (grug-far)",
+        desc = "Search and replace",
       },
       {
         "<leader>sw",
         function()
           require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } })
         end,
-        desc = "Search Word under Cursor (grug-far)",
+        desc = "Search word under cursor",
       },
     },
     opts = {
@@ -78,12 +78,12 @@ return {
     },
   },
 
-  -- ⏳ Undotree: Visual time-travel history
+  -- Visual undo history tree
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
     keys = {
-      { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle Undo Tree" },
+      { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle undo tree" },
     },
     config = function()
       vim.g.undotree_WindowLayout = 2
@@ -92,7 +92,7 @@ return {
     end,
   },
 
-  -- 🎯 Trouble.nvim: Diagnostics, symbols and references list
+  -- Diagnostics, symbols, and references list
   {
     "folke/trouble.nvim",
     cmd = { "Trouble" },
@@ -105,16 +105,16 @@ return {
       },
     },
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
-      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
-      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / References" },
-      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Workspace diagnostics" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer diagnostics" },
+      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Document symbols" },
+      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP definitions / references" },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location list" },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix list" },
     },
   },
 
-  -- 📋 Yanky.nvim: Clipboard History with Cycle Paste
+  -- Clipboard history with cyclic paste
   {
     "gbprod/yanky.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -129,7 +129,7 @@ return {
       { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" }, desc = "GPut before" },
       { "<c-p>", "<Plug>(YankyPreviousEntry)", desc = "Cycle backward through history" },
       { "<c-n>", "<Plug>(YankyNextEntry)", desc = "Cycle forward through history" },
-      { "<leader>y", "<cmd>YankyRingHistory<cr>", desc = "Open Yank History" },
+      { "<leader>y", "<cmd>YankyRingHistory<cr>", desc = "Open yank history" },
     },
   },
 }

@@ -1,208 +1,276 @@
-# Neovim & Dev Muhiti Tuzilmasi va Tahrirlash Qo'llanmasi
+# Loyiha Tuzilmasi va Tahrirlash Qo'llanmasi
 
-Ushbu hujjat `setup/vim/` ichidagi barcha sozlamalar qanday tuzilgani, qaysi fayl nima vazifani bajarishi va kelgusida biror narsani o'zgartirish kerak bo'lganda uni qayerdan va qanday to'g'rilash mumkinligini tushuntiradi.
+Ushbu qo'llanma `setup/vim/` arxitekturasi, har bir fayl va papkaning vazifasi hamda konfiguratsiyalarni xavfsiz tahrirlash, yangi plaginlar qo'shish yoki o'chirish, Tmux va Ghostty sozlamalarini moslashtirish bo'yicha to'liq qo'llanmadir.
+
+Tugmalar birikmasi va buyruqlar shpargalkasi uchun [CHEATSHEET.md](CHEATSHEET.md) fayliga qarang.
 
 ---
 
-## 1. Umumiy Arxitektura va Papkalar Xaritasi
+## 1. Umumiy Arxitektura va Fayllar Xaritasi
 
-Barcha konfiguratsiyalar `~/Projects/setup/vim` ichida saqlanadi va operatsion tizimning `~/.config` papkasiga symlink (havola) qilingan:
-* `~/.config/nvim` ──► `~/Projects/setup/vim`
-* `~/.config/tmux/tmux.conf` ──► `~/Projects/setup/vim/tmux/tmux.conf`
-* `~/.config/ghostty/config` ──► `~/Projects/setup/vim/ghostty/config`
+Muhit sozlamalari markazlashgan holda `~/Projects/setup/vim` katalogida joylashgan bo'lib, tizimdagi standart konfiguratsiya yo'llariga symlink qilingan:
+- `~/.config/nvim` -> `~/Projects/setup/vim`
+- `~/.config/tmux/tmux.conf` -> `~/Projects/setup/vim/tmux/tmux.conf`
+- `~/.config/ghostty/config` -> `~/Projects/setup/vim/ghostty/config`
+- `~/.local/bin/ts` -> `~/Projects/setup/vim/tmux/bin/tmux-session-manager`
 
-> **Asosiy qoida:** `setup/vim/` ichidagi istalgan faylni tahrirlaganingizda, o'zgarishlar darhol butun tizimda ishlaydi. Alohida nusxa ko'chirib o'tirish shart emas.
+Repositorydagi istalgan fayl tahrirlanganda o'zgarishlar darhol tegishli dasturda aks etadi.
 
 ```text
-vim/
-├── init.lua                   # Neovim start nuqtasi (options, lazy, keymaps'ni yuklaydi)
-├── lazy-lock.json             # O'rnatilgan plaginlarning barqaror commit/versiyalari
-├── install.sh                 # Yangi kompyuterda avtomatik o'rnatish skripti
-├── README.md                  # Inglizcha umumiy yo'riqnoma
-├── CHEATSHEET.md              # Barcha klaviatura tugmalari shpargalkasi
-├── structure.md               # Ushbu tahrirlash qo'llanmasi
+setup/vim/
+├── init.lua                               # Neovim boshlang'ich nuqtasi (options, lazy, keymaps)
+├── lazy-lock.json                         # Barcha plaginlarning barqaror commit hash xaritasi
+├── install.sh                             # Yangi tizimda bir buyruq bilan sozlash skripti
+├── README.md                              # Loyiha haqida qisqacha ma'lumot
+├── CHEATSHEET.md                          # Klaviatura tugmalari shpargalkasi
+├── structure.md                           # Arxitektura va tahrirlash qo'llanmasi
 │
 ├── lua/
-│   ├── config/                # Neovimning ichki shaxsiy sozlamalari
-│   │   ├── options.lua        # Qator raqamlari, tablar, clipboard, xotira
-│   │   ├── keymaps.lua        # Asosiy tugmalar birikmasi (splits, oil, buffers)
-│   │   ├── lazy.lua           # Lazy.nvim plagin menejeri sozlamasi
-│   │   └── autocmds.lua       # Avtomatik hodisalar (matndan nusxa olganda miltillash va h.k.)
+│   ├── config/                            # Neovim asosiy sozlamalari
+│   │   ├── options.lua                    # Redaktor xatti-harakatlari va vim optsiyalar
+│   │   ├── lazy.lua                       # lazy.nvim plagin menejerini initsializatsiya qilish
+│   │   └── keymaps.lua                    # Global tugmalar birikmasi (navigatsiya, splitlar, bufferlar)
 │   │
-│   └── plugins/               # Har bir plagin uchun alohida modulli fayllar
-│       ├── lsp.lua            # Mason, nvim-lspconfig, til serverlari, auto-import va diagnostika
-│       ├── colors.lua         # TailwindCSS va HEX/RGB ranglar prevyusi
-│       ├── terminal.lua       # Snacks suzuvchi terminal
-│       ├── oil.lua            # Oil.nvim — fayllar boshqaruvchisi
-│       ├── snacks.lua         # Snacks.nvim — tezkor qidiruv (picker), lazygit
-│       ├── ui.lua             # Vague tema, statusline, bufferline, which-key
-│       ├── real_icons.lua     # Miguel Solorio'ning VSCode uslubidagi ikonkalar to'plami
-│       ├── completion.lua     # Blink.cmp — kodni avtoto'ldirish tizimi
-│       ├── formatting.lua     # Conform.nvim — avtomatik kod tekislash (Pint, Prettier)
-│       ├── git.lua            # Gitsigns, Diffview, Octo (GitHub PR/Issues)
-│       ├── editor.lua         # Flash, Undotree, Trouble, Yanky, Mini.pairs
-│       └── treesitter.lua     # Kod ranglari va sintaksis daraxti
+│   └── plugins/                           # Modulli plagin sozlamalari (har biri alohida kategoriya)
+│       ├── ui.lua                         # Vague mavzusi, statusline, indentatsiya, animatsiyalar
+│       ├── oil.lua                        # Bufer asosidagi fayllar boshqaruvchisi
+│       ├── snacks.lua                     # Fuzzy finder, live grep, fayllar qidiruvi va UI vositalari
+│       ├── lsp.lua                        # Mason, nvim-lspconfig, til serverlari va diagnostika
+│       ├── completion.lua                 # Blink.cmp avtoto'ldirish dvigateli
+│       ├── treesitter.lua                 # Sintaksisni ranglash va AST tahlili
+│       ├── formatting.lua                 # Conform.nvim avtomatik kod tekislash (format on save)
+│       ├── git.lua                        # Gitsigns git holati, diff va o'zgarishlar
+│       ├── terminal.lua                   # Snacks suzuvchi va doimiy terminallar
+│       ├── editor.lua                     # Qavslar, matn o'rash, izohlar va undotree
+│       ├── colors.lua                     # Rang kodlari va TailwindCSS klasslari prevyusi
+│       └── real_icons.lua                 # Terminalda vektor (SVG) piktogrammalarini chizish
 │
-├── tmux/                      # Terminal multiplexer sozlamalari
-│   ├── tmux.conf              # Tmux asosiy konfiguratsiyasi (prefix, splitlar, sessiyalar)
+├── tmux/
+│   ├── tmux.conf                          # Tmux server va oynalar boshqaruvi sozlamalari
 │   └── bin/
-│       └── tmux-session-manager # Fzf asosidagi sessiyalar boshqaruvchisi
+│       └── tmux-session-manager           # Loyihalar va sessiyalar o'rtasida fzf orqali tezkor o'tish
 │
-├── ghostty/                   # Ghostty terminal emulyatori
-│   └── config                 # Shrift, fon shaffofligi, o'lchamlar
+├── ghostty/
+│   └── config                             # Ghostty terminal emulyatori sozlamalari (shrift, mavzu)
 │
-└── icons/                     # Maxsus ikonka paketlari
-    └── vscode-symbols/
+└── icons/
+    └── vscode-symbols/                    # Terminalda ko'rsatiladigan outline va fayl SVG ikonkalar
+        └── src/
+            ├── symbol-icon-theme.json     # Ikonkalarning kengaytmalar bilan bog'lanish qoidalari
+            └── icons/
+                ├── files/                 # Fayl turlari uchun SVG ikonkalari
+                └── folders/               # Faqat outline folder va folder-open SVG ikonkalari
 ```
 
 ---
 
-## 2. Asosiy Sozlamalarni Tahrirlash (`lua/config/`)
+## 2. Fayllar va Ularning Aniq Vazifalari
 
-### `options.lua` (Vim xatti-harakatlari)
-Agar indent (probellar soni), qator raqamlari yoki clipboardni o'zgartirmoqchi bo'lsangiz:
-* **Fayl yo'li:** `lua/config/options.lua`
-* **Nimalarni o'zgartirish mumkin:**
-  - `opt.number = true` — Chapdagi qator raqamini yoqish/o'chirish.
-  - `opt.relativenumber = true` — Nisbiy qator raqamlari.
-  - `opt.tabstop = 4` va `opt.shiftwidth = 4` — Tab bosilganda nechta probel surilishi (masalan, PHP/Laravel uchun 4, JS uchun 2 qilish mumkin).
-  - `opt.clipboard = "unnamedplus"` — Tizim (OS) xotirasi bilan nusxalashni birlashtirish.
+### Asosiy Fayllar (Root)
+- **`init.lua`**: Neovim yuklanayotganda birinchi bo'lib ishga tushadi. Leader tugmasini (`Space`) belgilaydi va qat'iy tartibda uchta modulni yuklaydi: `config.options`, `config.lazy` va `config.keymaps`.
+- **`lazy-lock.json`**: `lazy.nvim` tomonidan avtomatik boshqariladi. O'rnatilgan har bir plaginning aniq Git commit identifikatorini saqlaydi. Bu boshqa mashinada `install.sh` ishga tushirilganda aynan bir xil versiyalar o'rnatilishini kafolatlaydi.
+- **`install.sh`**: Yangi kompyuterda yoki yangi muhitda CLI vositalarini tekshiradi, symlinklarni ulaydi, TPM plaginlarini yuklab oladi va Neovim plaginlarini boshlang'ich sinxronizatsiya qiladi.
 
-### `keymaps.lua` (Tugmalar birikmasi)
-Yangi qisqa tugma qo'shish yoki mavjudlarini o'zgartirish:
-* **Fayl yo'li:** `lua/config/keymaps.lua`
-* **Sintaksis:** `map("rejim", "bosiladigan_tugma", "bajariladigan_buyruq", { desc = "Izoh" })`
-* **Rejimlar:**
-  - `"n"` — Normal rejim (fayl ko'rilayotgan payt)
-  - `"v"` / `"x"` — Visual rejim (matn belgilanganda)
-  - `"i"` — Insert rejim (matn yozilayotganda)
-  - `"t"` — Terminal rejim
-* **Misol (Yangi tugma qo'shish):**
+### Asosiy Sozlamalar (`lua/config/`)
+- **`options.lua`**: Vimning asosiy harakatlarini belgilaydi: 2 bo'shliqli tablar (`shiftwidth = 2`, `expandtab = true`), qator raqamlari (`number`, `relativenumber`), tizim clipboard integratsiyasi (`unnamedplus`), kursor harakati, vaqtinchalik swap fayllarini o'chirish va undofile orqali o'zgarishlar tarixini doimiy saqlash.
+- **`lazy.lua`**: `lazy.nvim` plagin menejerining bootstrap qismi. Agar plagin menejeri diskda bo'lmasa, uni avtomatik yuklab oladi va `lua/plugins/` papkasidagi barcha modullarni avtomatik skanerlash qilib ulaydi.
+- **`keymaps.lua`**: Plaginlarga bog'liq bo'lmagan yoki umumiy tizim miqyosidagi global tugmalar: oyna ajratish (split), tablar o'rtasida navigatsiya, saqlash (`Ctrl+s`), chiqish (`Ctrl+q`), qidiruv highlightini tozalash va Oil/Snacks uchun asosiy chaqiruvlar.
+
+### Plaginlar Modullari (`lua/plugins/`)
+- **`ui.lua`**: Vizual ko'rinish va ergonomika:
+  - `vague.nvim`: Ranglar palitrasi.
+  - `heirline.nvim`: Yengil va tezkor statusline (rejim, fayl nomi, git holati, LSP diagnostikasi).
+  - `snacks.indent`: Indentatsiya chiziqlari.
+  - `snacks.scroll` va `snacks.animate`: Kursor va sahifa siljishini silliqlash.
+- **`oil.lua`**: Fayllar tizimini xuddi oddiy Vim buferi kabi tahrirlash imkonini beradi (`-` tugmasi). Fayllarni qayta nomlash, ko'chirish yoki o'chirish to'g'ridan-to'g'ri matn tahriri orqali bajariladi.
+- **`snacks.lua`**: Tezkor qidiruv tizimi: fayllarni topish (`<leader><space>`), matn qidirish (`<leader>/`), ochiq buferlar (`<leader>,`), yaqinda ochilgan fayllar (`<leader>fr`) va git holati (`<leader>gs`).
+- **`lsp.lua`**: Til serverlari ekotizimi:
+  - `mason.nvim` va `mason-lspconfig.nvim`: Serverlarni avtomatik o'rnatish va boshqarish.
+  - `nvim-lspconfig`: Serverlarni sozlash (vtsls, intelephense, pyright, lua_ls, tailwindcss va boshqalar).
+  - Kod diagnostikasi (xatolar, ogohlantirishlar), inline hints va tahrirlovchi float oynalari.
+- **`completion.lua`**: `blink.cmp` yuqori unumdorlikka ega avtoto'ldirish dvigateli. LSP, snippetlar, buferdagi so'zlar va fayl yo'llarini birlashtiradi.
+- **`treesitter.lua`**: Kod sintaksisini daraxt ko'rinishida tahlil qiladi (AST). Ranglash, indentatsiya va kod bloklarini yig'ish (folding) uchun asosiy dvigatel.
+- **`formatting.lua`**: `conform.nvim` yordamida faylni saqlash vaqtida avtomatik formatlash (`format_on_save`). Har bir til uchun kerakli formatlagichni ulaydi (Prettier, Pint, Stylua, Black).
+- **`git.lua`**: `gitsigns.nvim` orqali fayl ichidagi qo'shilgan, o'zgartirilgan yoki o'chirilgan qatorlarni chap chekkada ko'rsatadi, inline blame va hunklarni boshqarishni ta'minlaydi.
+- **`terminal.lua`**: `snacks.terminal` integratsiyasi. Suzuvchi yoki pastki terminallarni bir tugma bilan ochish va yashirish (`<c-/>` yoki `<c-_>`).
+- **`editor.lua`**: Matn tahrirlash qulayliklari:
+  - `mini.pairs`: Qavslar va qo'shtirnoqlarni avtomatik juftlash.
+  - `mini.surround`: Qavslarni o'rash, o'zgartirish yoki olib tashlash.
+  - `undotree`: Tahrirlashlar shajarasi va tarixini vizual ko'rish.
+- **`colors.lua`**: Kod ichidagi HEX, RGB rang kodlari va TailwindCSS rangli klasslarining orqa fonini mos rangda bo'yab ko'rsatish (`nvim-highlight-colors`).
+- **`real_icons.lua`**: Neovim ichida haqiqiy vektor (SVG) ikonkalarni terminalda chizib berish uchun `real-icons.nvim` integratsiyasi.
+
+### Tmux Muhiti (`tmux/`)
+- **`tmux.conf`**: Prefiks tugmasini `Ctrl+Space`ga o'rnatadi, intuitiv splitlar (`v` vertikal, `h` gorizontal), oynalar o'rtasida o'tish, Neovim va Tmux o'rtasida to'siqsiz harakat (`Ctrl+h/j/k/l`), TPM plaginlari va Vague mavzusidagi status paneli.
+- **`tmux-session-manager`**: `fzf` asosidagi skript. Ochiq tmux sessiyalari va `~/Projects` katalogidagi loyihalar ro'yxatini chiqarib, ularga darhol ulanish, yangi sessiya ochish yoki o'chirish imkonini beradi.
+
+### Ghostty Muhiti (`ghostty/`)
+- **`config`**: Terminal shrifti, o'lchami, ranglar mavzusi, orqa fon shaffofligi va oyna chekka bo'shliqlarini (padding) belgilaydi.
+
+---
+
+## 3. Asosiy Sozlamalarni Tahrirlash
+
+### Neovim parametrlarini o'zgartirish (`lua/config/options.lua`)
+Redaktor harakati va tashqi ko'rinishiga oid barcha standart parametrlar shu yerda sozlanadi:
+- Tab hajmini o'zgartirish:
   ```lua
-  -- Faylni tezda saqlash uchun Space + s qilish:
-  map("n", "<leader>s", "<cmd>w<CR>", { desc = "Faylni saqlash" })
+  opt.shiftwidth = 4 -- standart 2 o'rniga 4 ta probel
+  opt.tabstop = 4
+  ```
+- Nisbiy raqamlarni yoqish/o'chirish:
+  ```lua
+  opt.relativenumber = true -- faqat oddiy raqamlar kerak bo'lsa false qilinadi
+  ```
+- Kursor atrofida ko'rinadigan qatorlar zaxirasi:
+  ```lua
+  opt.scrolloff = 8 -- kursordan pastda va tepada kamida 8 qator doim ko'rinadi
   ```
 
----
+### Tugmalar birikmasini o'zgartirish (`lua/config/keymaps.lua`)
+Yangi klaviatura yorliqlari `vim.keymap.set` orqali qo'shiladi:
+```lua
+-- Format: vim.keymap.set(rejim, tugma, buyruq, optsiyalar)
+-- Rejimlar: 'n' (normal), 'i' (insert), 'v' (visual), 'x' (visual block)
 
-## 3. Plaginlarni Tahrirlash (`lua/plugins/`)
+-- Misol: Yangi fayl ochish uchun tezkor tugma
+vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New empty buffer" })
 
-### 1. `terminal.lua` (Doimiy terminallar)
-* **Vazifasi:** `Ctrl + \` bosilganda ekranning o'rtasida suzuvchi terminal chiqaradi. 1, 2, 3 raqamli terminallar jarayonni saqlab qoladi (`lazygit` yoki `php artisan` o'chmaydi).
-* **Nimalarni o'zgartirish mumkin:**
-  - `direction = "float"` — agar terminalni pastdan gorizontal chiqmoqchi qilsangiz, `"horizontal"` ga o'zgartirasiz.
-  - `size` — gorizontal/vertikal terminal balandligi yoki eni.
-
-### 2. `oil.lua` (Fayllar boshqaruvchisi)
-* **Vazifasi:** Fayllar tuzilmasini oddiy matn faylidek tahrirlash (`Space + o` yoki `Space + e`).
-* **Nimalarni o'zgartirish mumkin:**
-  - `show_hidden = false` — nuqta bilan boshlanuvchi yashirin fayllar (masalan `.env`, `.gitignore`) standart holatda ko'rinmasligi. Uni `true` qilsangiz doim ko'rinadi.
-  - `keymaps` blokida `Esc`, `Enter`, `q` harakatlarini o'zgartirish.
-
-### 3. `snacks.lua` (Fayllar qidiruvi va Picker)
-* **Vazifasi:** `Space + Space` (fayl qidirish), `Space + fg` (kod ichidan matn qidirish), indent chiziqlari, tasvir (rasm) ko'rish.
-* **Nimalarni o'zgartirish mumkin:**
-  - `hidden = false` — fayl qidirganda `.env` kabilarni qidiruvga qo'shish yoki qo'shmaslik.
-  - `keys` bo'limida yangi qidiruv turlarini (masalan, diagnostika yoki buyruqlar tarixini) kiritish.
-
-### 4. `ui.lua` (Tashqi ko'rinish, Tablar va Status Bar)
-* **Vazifasi:** Rang mavzusi, tepada turuvchi ochiq fayllar paneli (`bufferline`), pastdagi qator (`lualine`) va qisqa tugmalar ko'rsatgichi (`which-key`).
-* **Nimalarni o'zgartirish mumkin:**
-  - Rang mavzusini almashtirish (hozirgi minimal `vague` o'rniga boshqa tema qo'yish).
-  - `lualine` bo'limlarida qaysi ma'lumotlar (git branch, fayl nomi, xatolar soni) ko'rinishini tanlash.
-  - `which-key.nvim` dagi guruhlar nomlarini o'zgartirish.
-
-### 5. `formatting.lua` (Kodni tekislash — Format on Save)
-* **Vazifasi:** Fayl saqlanganda (`:w`) avtomatik kodni tartibga solish (`conform.nvim`).
-* **Qo'llab-quvvatlanadigan formatlagichlar:**
-  - PHP: `pint` (Laravel)
-  - JavaScript / TypeScript: `prettier`
-  - Lua: `stylua`
-* **Qanday o'zgartiriladi:**
-  - Agar faylni saqlaganda avtomatik tekislanishini xohlamasangiz, `format_on_save` blokini o'chirishingiz yoki `timeout_ms` ni o'zgartirishingiz mumkin.
-
-### 6. `lsp.lua` (LSP, Mason va Diagnostika)
-* **Vazifasi:** TypeScript, React, TailwindCSS, HTML, CSS, JSON va Lua uchun to'liq til serverlarini (LSP) o'rnatish va sozlash.
-  - `gd` — Go to Definition
-  - `K` — Hover documentation
-  - `Space + ca` — Code Action (auto-import va tezkor tuzatish)
-  - `Space + cr` — Rename symbol
-  - `[d` / `]d` — Oldingi/keyingi diagnostika xatosi
-  - Real-time qizil/sariq xatolik belgilari va chiziqlari.
-
-### 7. `colors.lua` (TailwindCSS va Ranglar Prevyusi)
-* **Vazifasi:** `nvim-highlight-colors` orqali kod ichidagi barcha TailwindCSS rang sinflari (masalan `bg-red-500`, `text-sky-400`) va HEX/RGB kodlarini real rangli fon bilan bo'yab ko'rsatish.
-
-### 8. `completion.lua` (Blink.cmp avtoto'ldirish)
-* **Vazifasi:** Kod yozayotganda LSP, snippetlar, fayl yo'llari va bufer so'zlaridan tezkor takliflar (IntelliSense), auto-import va parametrlar yordamchisi chiqarib berish.
-* **Nimalarni o'zgartirish mumkin:**
-  - `sources.default` da qaysi manbalar ishlashi (`lsp`, `path`, `snippets`, `buffer`).
-  - Taklif oynasidagi tugmalar: `Enter` qabul qiladi, `Tab` keyingisiga o'tadi, `Ctrl + Space` takliflarni majburiy chaqiradi.
-
-### 7. `git.lua` (Git va GitHub vositalari)
-* **Vazifasi:**
-  - `gitsigns` — kod qatori yonida qo'shilgan/o'chirilgan belgilar (yashil/qizil chiziqlar).
-  - `diffview` — git commitlar va branchlarni yonma-yon solishtirish (`Space + gd`).
-  - `octo` — Neovim ichidan GitHub PR va Issue'larni boshqarish (`Space + gp`).
-  - `git-conflict` — Merge konfliktlarni tugma bilan yechish (`co`, `ct`, `cb`).
-
-### 8. `editor.lua` (Harakat va Tarix)
-* **Vazifasi:**
-  - `flash.nvim` — ekrandagi istalgan joyga `s` bosib 2 ta harf bilan sakrash.
-  - `undotree` — barcha o'zgarishlar daraxti (`Space + u`).
-  - `trouble.nvim` — kod xatolari va funksiyalar ro'yxati (`Space + xx`, `Space + cs`).
-  - `grug-far.nvim` — butun loyiha bo'yicha so'zni topib ommaviy almashtirish (`Space + sr`).
-  - `yanky.nvim` — nusxalash tarixi (`p` dan keyin `Ctrl + p` bosib avvalgi nusxalanganlarni ko'rish).
+-- Misol: Butun matnni tanlash
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
+```
 
 ---
 
-## 4. Yangi Plagin Qo'shish yoki O'chirish
+## 4. Plaginlar Bilan Ishlash (lazy.nvim)
 
-Plaginlarni boshqarish juda oson qilingan, chunki har bir plagin alohida faylda turadi:
+Barcha plaginlar `lua/plugins/` katalogidagi fayllar orqali deklarativ tarzda boshqariladi.
 
-### Yangi plagin qo'shish:
-1. `setup/vim/lua/plugins/` ichida yangi `.lua` fayl oching (masalan: `my_plugin.lua`).
-2. Ichiga plaginning GitHub manzilini va sozlamasini yozing:
-   ```lua
-   return {
-     {
-       "muallif/plagin-nomi.nvim",
-       event = "VeryLazy",
-       opts = {},
-     },
-   }
-   ```
-3. Neovimni qayta oching — `lazy.nvim` yangi plaginni avtomatik internetdan yuklab oladi.
+### Yangi plagin qo'shish
 
-### Plaginni o'chirish:
-* O'sha plagin turgan faylni `lua/plugins/` ichidan o'chirib tashlang yoki fayl ichidagi qismini olib tashlang.
-* Neovimda `:Lazy clean` buyrug'ini bering — diskdagi keraksiz fayllar o'chiriladi.
+1. `lua/plugins/` papkasida yangi `.lua` fayl yarating (masalan, `lua/plugins/database.lua`) yoki mos mavzudagi mavjud faylga qo'shing.
+2. Quyidagi standart Lazy spec strukturasidan foydalaning:
+
+```lua
+return {
+  "kristijanhusak/vim-dadbod-ui",
+  dependencies = {
+    { "tpope/vim-dadbod", lazy = true },
+    { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+  },
+  cmd = {
+    "DBUI",
+    "DBUIToggle",
+    "DBUIAddConnection",
+    "DBUIFindBuffer",
+  },
+  init = function()
+    vim.g.db_ui_use_nerd_fonts = 1
+  end,
+}
+```
+
+3. Plagin parametrlari turlari:
+   - `lazy = true`: Plagin darhol emas, talab qilinganda yuklanadi.
+   - `event = "BufReadPost"`: Fayl ochilganda yuklanadi.
+   - `cmd = { "Command" }`: Ko'rsatilgan buyruq terilganda yuklanadi.
+   - `keys = { { "<leader>x", "<cmd>...", desc = "..." } }`: Tugma bosilganda yuklanadi.
+   - `opts = { ... }`: Plaginning `setup(opts)` funksiyasiga uzatiladigan parametrlar.
+   - `config = function(_, opts) ... end`: Maxsus sozlash logikasi kerak bo'lganda.
+
+4. Faylni saqlang va Neovimda plaginni o'rnating:
+   - Neovimni qayta ishga tushiring yoki buyruq bering:
+     ```text
+     :Lazy
+     ```
+   - Yangi plagin avtomatik yuklab olinadi va o'rnatiladi.
+
+### Plaginni o'chirish yoki vaqtincha to'xtatish
+
+- **Vaqtincha o'chirish:** Plagin konfiguratsiyasiga `enabled = false` qatorini qo'shing:
+  ```lua
+  return {
+    "folke/todo-comments.nvim",
+    enabled = false, -- plagin yuklanmaydi
+  }
+  ```
+- **Butunlay olib tashlash:**
+  1. `lua/plugins/` ichidagi tegishli faylni yoki plagin blokini o'chiring.
+  2. Neovim ichida quyidagi buyruqni bering:
+     ```text
+     :Lazy clean
+     ```
+  3. `lazy.nvim` keraksiz fayllarni diskdan xavfsiz o'chiradi.
 
 ---
 
-## 5. Tmux Sozlamalarini Tahrirlash (`tmux/tmux.conf`)
+## 5. Tmux Sozlamalarini Tahrirlash
 
-* **Fayl yo'li:** `setup/vim/tmux/tmux.conf`
-* **Nimalarni o'zgartirish mumkin:**
-  - `set -g prefix C-Space` — Asosiy prefix tugmasi (hozirda `Ctrl + Space`).
-  - `bind v split-window -h` — Vertikal split tugmasi.
-  - `bind h split-window -v` — Gorizontal split tugmasi.
-  - `status-style` — Pastdagi panel rangi (Vague temasi asosida sozlangan).
-* **O'zgarishlarni darhol qo'llash:**
-  Tmux ichida turib quyidagi buyruqni bering:
+Tmux konfiguratsiyasi `tmux/tmux.conf` faylida saqlanadi.
+
+### Asosiy sozlamalar yo'nalishi
+- **Prefiks tugmasi**: Standart `Ctrl+Space` etib belgilangan:
+  ```tmux
+  unbind C-b
+  set -g prefix C-Space
+  bind C-Space send-prefix
+  ```
+- **Yangi tugmalar biriktirish**:
+  ```tmux
+  # Yangi oynani joriy katalogda ochish
+  bind c new-window -c "#{pane_current_path}"
+  
+  # Maxsus buyruqni ishga tushirish tugmasi
+  bind g new-window -c "#{pane_current_path}" "lazygit"
+  ```
+- **Status panel ranglari**:
+  Pastki status panel Vague mavzusidagi `#141415`, `#252530` va `#6e94b2` ranglariga sozlangan. Formatni o'zgartirish uchun `status-left` va `status-right` qatorlarini tahrirlang.
+
+### O'zgarishlarni qo'llash (Reload)
+Konfiguratsiya tahrirlangach, Tmuxni butunlay yopish shart emas:
+- Tmux ichida buyruq satrida:
+  ```text
+  Ctrl+Space keyin :source-file ~/.config/tmux/tmux.conf
+  ```
+- Yoki terminal buyrug'i orqali:
   ```bash
   tmux source-file ~/.config/tmux/tmux.conf
   ```
 
----
-
-## 6. Ghostty Sozlamalarini Tahrirlash (`ghostty/config`)
-
-* **Fayl yo'li:** `setup/vim/ghostty/config`
-* **Nimalarni o'zgartirish mumkin:**
-  - `font-family` — Terminal shrifti (masalan: JetBrains Mono Nerd Font).
-  - `font-size` — Shrift kattaligi (masalan: `13`).
-  - `theme` — Rang sxemasi.
-  - `background-opacity` — Terminal foni shaffofligi (masalan: `0.95`).
+### Tmux Session Manager skriptini moslashtirish (`tmux/bin/tmux-session-manager`)
+Ushbu skript loyihalarni `~/Projects` papkasidan qidiradi.
+- Agar boshqa papkalarni ham qidiruvga qo'shmoqchi bo'lsangiz, `get_list()` funksiyasi ichidagi `find` qatorini kengaytiring:
+  ```bash
+  find ~/Projects ~/Work ~/Personal -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+  ```
 
 ---
+
+## 6. Ghostty Sozlamalarini Tahrirlash
+
+Ghostty konfiguratsiyasi `ghostty/config` faylida saqlanadi.
+
+### Keng tarqalgan parametrlarni o'zgartirish
+- **Shrift va uning o'lchami**:
+  ```ini
+  font-family = "JetBrainsMono Nerd Font"
+  font-size = 14
+  ```
+- **Mavzu va ranglar**:
+  ```ini
+  theme = "vague"
+  ```
+- **Shaffoflik va chekka bo'shliqlar**:
+  ```ini
+  background-opacity = 0.95
+  window-padding-x = 12
+  window-padding-y = 12
+  ```
+- **Kursor stili**:
+  ```ini
+  cursor-style = "block"
+  cursor-style-blink = false
+  ```
+
+### O'zgarishlarni tekshirish
+Ghostty odatda `ghostty/config` faylidagi o'zgarishlarni saqlangandan so'ng darhol qayta yuklaydi. Agar avtomatik qo'llanmasa, yangi oyna ochish (`Ctrl+Shift+N`) kifoya qiladi.

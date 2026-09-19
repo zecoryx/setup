@@ -1,3 +1,3 @@
--- ToggleTerm o'rniga Snacks.terminal ishlatamiz (allaqachon yuklangan, tezroq)
--- Ctrl+\ float terminal ochadi, yopadi. Terminal sessiyasi saqlanadi.
+-- Terminal emulator integration
+-- Floating terminal is managed via snacks.nvim (Snacks.terminal with <C-\>)
 return {}

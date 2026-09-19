@@ -1,4 +1,5 @@
 return {
+  -- Syntax highlighting and AST parsing
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",

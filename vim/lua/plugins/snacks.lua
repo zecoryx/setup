@@ -1,4 +1,5 @@
 return {
+  -- High-performance modern utilities and fuzzy finder
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -52,10 +53,8 @@ return {
       vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = "#6e94b2" })
       require("snacks").setup(opts)
 
-      -- ⚡ Ctrl+\ => Snacks floating terminal (ToggleTerm o'rniga)
-      -- Snacks.terminal terminalni fonda keshlab qo'yadi,
-      -- ikkinchi ochilishda deyarli 0ms da paydo bo'ladi
-      vim.keymap.set({ "n", "t" }, "<C-\\>", function()
+      -- Floating terminal toggle (<C-\>)
+      vim.keymap.set({ "n", "t" }, "<C-\x5c>", function()
         Snacks.terminal.toggle(nil, {
           win = {
             style = "float",
@@ -63,9 +62,9 @@ return {
             position = "float",
           },
         })
-      end, { desc = "Toggle Terminal (Snacks)", silent = true })
+      end, { desc = "Toggle terminal", silent = true })
 
-      -- Terminal buferini yengil qilish
+      -- Optimize terminal buffer performance
       vim.api.nvim_create_autocmd("TermOpen", {
         pattern = "term://*",
         callback = function()
@@ -78,22 +77,22 @@ return {
       })
     end,
     keys = {
-      -- ⚡ Instant Find Files with <Space><Space>
-      { "<leader><space>", function() Snacks.picker.files() end, desc = "Find Files (Instant)" },
+      -- Instant file picker
+      { "<leader><space>", function() Snacks.picker.files() end, desc = "Find files (Instant)" },
 
-      -- 🔍 Fuzzy Finder (Snacks Picker)
-      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
-      { "<leader>fg", function() Snacks.picker.grep() end, desc = "Live Grep (Search Code)" },
-      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find Buffers" },
-      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
-      { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config Files" },
+      -- Fuzzy finders
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
+      { "<leader>fg", function() Snacks.picker.grep() end, desc = "Live grep" },
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find buffers" },
+      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent files" },
+      { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart find files" },
+      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find config files" },
 
-      -- 🖼️ Hover Image Preview
-      { "<leader>mi", function() Snacks.image.hover() end, desc = "Hover Image Preview" },
+      -- Image preview
+      { "<leader>mi", function() Snacks.image.hover() end, desc = "Hover image preview" },
 
-      -- 🚀 Floating Dev Tools
-      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit (Floating)" },
+      -- Git UI (Lazygit)
+      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit floating window" },
     },
   },
 }

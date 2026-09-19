@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+# Collect active tmux sessions and project directories
 get_list() {
     local current_sess=""
     if [[ -n "$TMUX" ]]; then
         current_sess=$(tmux display-message -p '#S' 2>/dev/null)
     fi
 
-    # 1. Active Tmux Sessions
+    # Active tmux sessions
     if tmux list-sessions &>/dev/null; then
         while IFS='|' read -r name windows attached path; do
             local marker="  "
@@ -15,20 +16,21 @@ get_list() {
                 state="active"
             fi
             if [[ "$name" == "$current_sess" ]]; then
-                marker="★ "
+                marker="* "
                 state="current"
             fi
-            printf "SESSION\t%s\t%s⚡ %-18s\t[%s win, %s] %s\n" "$name" "$marker" "$name" "$windows" "$state" "$path"
+            printf "SESSION	%s	%s%-18s	[%s win, %s] %s
+" "$name" "$marker" "$name" "$windows" "$state" "$path"
         done < <(tmux list-sessions -F "#{session_name}|#{session_windows}|#{session_attached}|#{pane_current_path}" 2>/dev/null)
     fi
 
-    # 2. Projects in ~/Projects
+    # Project directories in ~/Projects
     find ~/Projects -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort | while read -r dir; do
         local dir_name=$(basename "$dir")
         local safe_name=$(echo "$dir_name" | tr . _)
-        # Only show if not already an active session
         if ! tmux has-session -t="$safe_name" 2>/dev/null; then
-            printf "PROJECT\t%s\t   📁 %-18s\t~/Projects/%s\n" "$dir" "$dir_name" "$dir_name"
+            printf "PROJECT	%s	   %-18s	~/Projects/%s
+" "$dir" "$dir_name" "$dir_name"
         fi
     done
 }
@@ -37,16 +39,7 @@ export -f get_list
 
 header="[ENTER] Switch/Attach  |  [CTRL-X] Kill Session  |  [CTRL-N] New Session"
 
-selected=$(get_list | fzf \
-    --reverse \
-    --delimiter=$'\t' \
-    --with-nth=3,4 \
-    --border=rounded \
-    --border-label=" 🧭 Tmux Sessiyalar Boshqaruvi " \
-    --prompt="⚡ Loyiha / Sessiya > " \
-    --header="$header" \
-    --bind "ctrl-x:execute-silent(bash -c 'if [[ {1} == \"SESSION\" ]]; then tmux kill-session -t {2}; fi')+reload(bash -c get_list)" \
-    --bind "ctrl-n:execute(bash -c 'read -p \"Yangi sessiya nomi: \" n; if [[ -n \"\$n\" ]]; then tmux new-session -ds \"\$n\" -c \"\$HOME/Projects\"; fi')+reload(bash -c get_list)"
+selected=$(get_list | fzf     --reverse     --delimiter=$'	'     --with-nth=3,4     --border=rounded     --border-label=" Tmux Session Manager "     --prompt="Project / Session > "     --header="$header"     --bind "ctrl-x:execute-silent(bash -c 'if [[ {1} == "SESSION" ]]; then tmux kill-session -t {2}; fi')+reload(bash -c get_list)"     --bind "ctrl-n:execute(bash -c 'read -p "New session name: " n; if [[ -n "\$n" ]]; then tmux new-session -ds "\$n" -c "\$HOME/Projects"; fi')+reload(bash -c get_list)"
 )
 
 if [[ -z "$selected" ]]; then

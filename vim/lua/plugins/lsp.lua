@@ -1,5 +1,5 @@
 return {
-  -- 📦 Mason: Portable package manager for LSP servers
+  -- Portable package manager for LSP servers, formatters, and linters
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
@@ -16,7 +16,7 @@ return {
     },
   },
 
-  -- 🔌 Mason-lspconfig & nvim-lspconfig
+  -- Native LSP configuration and language server management
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -26,7 +26,7 @@ return {
       "saghen/blink.cmp",
     },
     config = function()
-      -- 🎨 Diagnostics UI configuration
+      -- Diagnostics UI appearance and signs
       vim.diagnostic.config({
         virtual_text = {
           prefix = "●",
@@ -65,7 +65,7 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
           end
 
-          -- 🎯 Go to Definition & Navigation
+          -- Navigation & definitions
           map("gd", function()
             local ok, snacks = pcall(require, "snacks")
             if ok and snacks.picker and snacks.picker.lsp_definitions then
@@ -104,7 +104,7 @@ return {
             end
           end, "Type Definition")
 
-          -- 📖 Hover Documentation & Signature
+          -- Hover documentation & signature help
           map("K", function()
             vim.lsp.buf.hover({ border = "rounded" })
           end, "Hover Documentation")
@@ -113,7 +113,7 @@ return {
             vim.lsp.buf.signature_help({ border = "rounded" })
           end, "Signature Documentation")
 
-          -- ⚡ Code Actions & Rename
+          -- Code actions and refactoring
           map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "v" })
           map("<leader>cr", vim.lsp.buf.rename, "Rename Symbol")
 
@@ -127,12 +127,12 @@ return {
         end,
       })
 
-      -- Get capabilities supported by blink.cmp
+      -- Blink.cmp completion capabilities
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local lspconfig = require("lspconfig")
 
-      -- Mason LSPConfig automatically installs and configures servers
+      -- Mason-lspconfig automatic installation and setup handlers
       require("mason-lspconfig").setup({
         ensure_installed = {
           "ts_ls",
@@ -144,14 +144,14 @@ return {
         },
         automatic_installation = true,
         handlers = {
-          -- Default handler
+          -- Default server setup
           function(server_name)
             lspconfig[server_name].setup({
               capabilities = capabilities,
             })
           end,
 
-          -- ⚡ TypeScript / JavaScript with Auto-Import
+          -- TypeScript & JavaScript with auto-import
           ["ts_ls"] = function()
             lspconfig.ts_ls.setup({
               capabilities = capabilities,
@@ -187,7 +187,7 @@ return {
             })
           end,
 
-          -- 🎨 TailwindCSS Language Server
+          -- TailwindCSS language server
           ["tailwindcss"] = function()
             lspconfig.tailwindcss.setup({
               capabilities = capabilities,
@@ -214,7 +214,7 @@ return {
             })
           end,
 
-          -- 🌙 Lua Language Server
+          -- Lua language server
           ["lua_ls"] = function()
             lspconfig.lua_ls.setup({
               capabilities = capabilities,
