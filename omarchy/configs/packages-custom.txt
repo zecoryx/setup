@@ -1,0 +1,28 @@
+# --- 1. Ma'lumotlar Bazasi ---
+postgresql
+
+# --- 2. Tahrirlovchi & Terminal Dasturlari ---
+neovim
+ghostty
+yazi
+chafa
+zsh-autosuggestions
+github-cli
+gemini-cli
+termius
+
+# --- 3. Ish va Muloqot Ilovalari ---
+zen-browser-bin
+notion-app-electron
+ayugram-desktop-bin
+wps-office
+obsidian
+
+# --- 4. Tizim & Uskunalar Yordamchilari ---
+fprintd
+libfprint
+copyq
+libqalculate
+porty-bin
+webcamoid
+minecraft-launcher
