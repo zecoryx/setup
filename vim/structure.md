@@ -74,7 +74,7 @@ setup/vim/
   - `vim-tmux-navigator`: `Ctrl+h/j/k/l` bilan Neovim splitlari va tmux panellari orasida uzluksiz harakat.
   - `which-key.nvim`: `<leader>` bosilganda tugmalar menyusi.
 - **`oil.lua`**: Fayllar tizimini xuddi oddiy Vim buferi kabi tahrirlash imkonini beradi (`-` tugmasi). Fayllarni qayta nomlash, ko'chirish yoki o'chirish to'g'ridan-to'g'ri matn tahriri orqali bajariladi.
-- **`snacks.lua`**: Eng katta modul. Fuzzy picker bitta harfli tugmalarda: fayllar (`<leader>f`), live grep (`<leader>s`), buferlar (`<leader>b`), yaqinda ochilganlar (`<leader>r`). Shuningdek: suzuvchi terminal (`Ctrl+\`), LazyGit (`<leader>gg`), rasm prevyusi (`<leader>i`), notifier, indent chiziqlari va `bigfile` optimizatsiyasi.
+- **`snacks.lua`**: Eng katta modul. Fuzzy picker bitta harfli tugmalarda: fayllar (`<leader>f`), live grep (`<leader>s`), buferlar (`<leader>b`), ochiq fayllar ichidan matn (`<leader>/`). Shuningdek: suzuvchi terminal (`Ctrl+\`), LazyGit (`<leader>gg`), rasm prevyusi (`<leader>i`), notifier, indent chiziqlari va `bigfile` optimizatsiyasi.
 
   > Tugmalar ataylab bitta harf: `<leader>` ostida **bitta ham** 'ham mapping, ham prefiks' holati qolmagan, shuning uchun hech bir tugma `timeoutlen` (300ms) kutmaydi.
 - **`lsp.lua`**: Til serverlari ekotizimi:

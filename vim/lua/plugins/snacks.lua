@@ -64,10 +64,8 @@ return {
       -- One letter each: these are the keys pressed dozens of times a day
       { "<leader>f", function() Snacks.picker.files() end, desc = "Find files" },
       { "<leader>s", function() Snacks.picker.grep() end, desc = "Search text in project" },
-      { "<leader>S", function() Snacks.picker.grep_word() end, mode = { "n", "x" }, desc = "Search word under cursor in project" },
       { "<leader>/", function() Snacks.picker.grep_buffers() end, desc = "Search text in open buffers" },
       { "<leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
-      { "<leader>r", function() Snacks.picker.recent() end, desc = "Recent files" },
 
       { "<leader>i", function() Snacks.image.hover() end, desc = "Image preview" },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit floating window" },

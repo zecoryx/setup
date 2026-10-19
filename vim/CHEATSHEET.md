@@ -59,24 +59,18 @@ Terminal buyruqlari:
 >
 > ```
 >  FAYL (nom bo'yicha)   hozir ochiqlar        Space + b
->                        yaqinda ochilganlar   Space + r
 >                        butun loyiha          Space + f
 >
 >  MATN (ichidan)        hozirgi fayl          /
 >                        ochiq fayllar         Space + /
 >                        butun loyiha          Space + s
->                        kursordagi so'z       Space + S
 > ```
->
-> Kichik harf = o'zim yozaman · bosh harf = kursordagisini ol
 
 | Tugma | Vazifasi |
 | :--- | :--- |
 | `Space + f` | Fayl **nomi** bo'yicha qidiruv (butun loyiha) |
 | `Space + s` | **Matn** qidirish (butun loyiha, o'zim yozaman) |
-| `Space + S` | **Matn** qidirish — kursor ostidagi so'z / tanlangan matn |
 | `Space + /` | **Matn** qidirish — faqat ochiq fayllar ichida |
-| `Space + r` | Yaqinda ochilgan fayllar |
 | `Space + o` | Hozirgi fayl turgan papkani ochish (Oil explorer) |
 | `Space + e` | Loyihaning bosh ildiz papkasini ochish (Oil project root) |
 | `-` (minus) | Papkalar iyerarxiyasida 1 qadam yuqoriga / orqaga chiqish |
