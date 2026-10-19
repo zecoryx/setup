@@ -8,7 +8,7 @@
 | Tugma | Vazifasi |
 | :--- | :--- |
 | `Ctrl + Space` keyin `f` | **Sessiya/loyiha menejeri** (fzf popup: ochiq sessiyalar + `~/Projects`) |
-| `Ctrl + Space` keyin `T` | **Vositalar menyusi** — ichidan: `g` lazygit, `d` lazydocker, `s` lazysql, `f` sessiya menejeri |
+| `Ctrl + Space` keyin `o` | **Vositalar menyusi** — ichidan: `g` lazygit, `d` lazydocker, `s` lazysql, `f` sessiya menejeri |
 | `Ctrl + Space` keyin `s` | Barcha sessiyalar daraxti (`Enter` — kirish, `x` keyin `y` — o'chirish) |
 | `Ctrl + Space` keyin `w` | Barcha oynalar (windows) daraxti |
 | `Ctrl + Space` keyin `Ctrl + s` | Hozirgi sessiyalarni xotiraga saqlash |

@@ -48,7 +48,7 @@ repodagi o'z skripti bor: `tmux/bin/tmux-session-manager`.
 - **Tugmalar**: `Enter` — ulanish/almashish, `Ctrl+x` — sessiyani o'chirish, `Ctrl+n` — yangi sessiya.
 - **Bog'liqlik**: faqat `fzf`.
 
-## 2.1. Vositalar Menyusi (`Prefix + T`)
+## 2.1. Vositalar Menyusi (`Prefix + o`)
 
 Tahrirlanayotgan faylga bog'liq bo'lmagan TUI vositalari bitta menyu ortida yig'ilgan,
 shunda uchta alohida tugmani yodlash kerak bo'lmaydi — menyu o'zi nimani ocha olishini ko'rsatadi.
