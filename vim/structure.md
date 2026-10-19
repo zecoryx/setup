@@ -98,7 +98,9 @@ setup/vim/
 - **`colors.lua`**: Kod ichidagi HEX, RGB rang kodlari va TailwindCSS rangli klasslarining orqa fonini mos rangda bo'yab ko'rsatish (`nvim-highlight-colors`).
 
 ### Tmux Muhiti (`tmux/`)
-- **`tmux.conf`**: Prefiks tugmasini `Ctrl+Space`ga o'rnatadi, intuitiv splitlar (`v` vertikal, `h` gorizontal), oynalar o'rtasida o'tish, Neovim va Tmux o'rtasida to'siqsiz harakat (`Ctrl+h/j/k/l`), sessiya menejeri popup'i (`Prefix + f`), TPM plaginlari va Vague mavzusidagi status paneli.
+- **`tmux.conf`**: `is_vim` sharti yordamida `Ctrl+h/j/k/l` (navigatsiya) va `Shift+strelka`
+  (o'lcham) **qaysi qatlamda turganingizga qarab** ishlaydi: nvim ichida nvim splitini,
+  shellda tmux panelini. Prefiks tugmasini `Ctrl+Space`ga o'rnatadi, intuitiv splitlar (`v` vertikal, `h` gorizontal), oynalar o'rtasida o'tish, Neovim va Tmux o'rtasida to'siqsiz harakat (`Ctrl+h/j/k/l`), sessiya menejeri popup'i (`Prefix + f`), TPM plaginlari va Vague mavzusidagi status paneli.
 - **`tmux-session-manager`**: `fzf` asosidagi skript. Ochiq tmux sessiyalari va `~/Projects` katalogidagi loyihalar ro'yxatini chiqarib, ularga darhol ulanish, yangi sessiya ochish yoki o'chirish imkonini beradi.
 
 ### Ghostty Muhiti (`ghostty/`)

@@ -14,7 +14,6 @@
 | `Ctrl + Space` keyin `Ctrl + s` | Hozirgi sessiyalarni xotiraga saqlash |
 | `Ctrl + Space` keyin `Ctrl + r` | Saqlangan sessiyalarni qayta tiklash |
 | `Ctrl + Space` keyin `r` | Sessiya nomini o'zgartirish |
-| `Ctrl + Space` keyin `N` | Yangi nomli sessiya ochish |
 | `Ctrl + Space` keyin `d` | Sessiyadan chiqish (orqa fonda qoladi) |
 | `Ctrl + Space` keyin `c` | Yangi oyna (window) ochish |
 | `Shift + Alt + h` / `l` | Oynalar (tablar) bo'yicha chapga / o'ngga o'tish |
@@ -42,7 +41,7 @@ Terminal buyruqlari:
 | `Space + m` | Splitni butun ekranga kattalashtirish / qaytarish (Maximize) |
 | `Space + =` | Barcha splitlarni tenglashtirish |
 | `Ctrl + h / j / k / l` | Splitlar orasida harakatlanish |
-| `Shift + Strelkalar` | Split o'lchamini kengaytirish / toraytirish |
+| `Shift + Strelkalar` | Split o'lchamini o'zgartirish — **nvim ichida nvim splitini, shellda tmux panelini** (`Ctrl+h/j/k/l` kabi) |
 
 ### Tmux ichida:
 | Tugma | Vazifasi |
@@ -56,10 +55,27 @@ Terminal buyruqlari:
 
 ## 3. Fayllar va Qidiruv (Neovim)
 
+> **Qidiruv qoidasi** — yuqori yarmi fayl, pastki yarmi matn, qamrov kengayib boradi:
+>
+> ```
+>  FAYL (nom bo'yicha)   hozir ochiqlar        Space + b
+>                        yaqinda ochilganlar   Space + r
+>                        butun loyiha          Space + f
+>
+>  MATN (ichidan)        hozirgi fayl          /
+>                        ochiq fayllar         Space + /
+>                        butun loyiha          Space + s
+>                        kursordagi so'z       Space + S
+> ```
+>
+> Kichik harf = o'zim yozaman · bosh harf = kursordagisini ol
+
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Space + f` | Fayl nomi bo'yicha tezkor qidiruv (Snacks Picker) |
-| `Space + s` | Kod ichidan matn qidirish (Live Grep) |
+| `Space + f` | Fayl **nomi** bo'yicha qidiruv (butun loyiha) |
+| `Space + s` | **Matn** qidirish (butun loyiha, o'zim yozaman) |
+| `Space + S` | **Matn** qidirish — kursor ostidagi so'z / tanlangan matn |
+| `Space + /` | **Matn** qidirish — faqat ochiq fayllar ichida |
 | `Space + r` | Yaqinda ochilgan fayllar |
 | `Space + o` | Hozirgi fayl turgan papkani ochish (Oil explorer) |
 | `Space + e` | Loyihaning bosh ildiz papkasini ochish (Oil project root) |
