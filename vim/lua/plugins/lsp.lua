@@ -34,10 +34,10 @@ return {
         },
         signs = {
           text = {
-            [vim.diagnostic.severity.ERROR] = "",
-            [vim.diagnostic.severity.WARN] = "",
-            [vim.diagnostic.severity.HINT] = "",
-            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.HINT] = "",
+            [vim.diagnostic.severity.INFO] = "",
           },
         },
         underline = true,
@@ -50,8 +50,14 @@ return {
       })
 
       -- Diagnostic global keymaps
-      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic" })
-      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+      vim.keymap.set("n", "[d", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+      end, { desc = "Previous Diagnostic" })
+
+      vim.keymap.set("n", "]d", function()
+        vim.diagnostic.jump({ count = 1, float = true })
+      end, { desc = "Next Diagnostic" })
+
       vim.keymap.set("n", "<leader>cd", function()
         vim.diagnostic.open_float({ border = "rounded" })
       end, { desc = "Line Diagnostics (Float)" })
@@ -127,12 +133,75 @@ return {
         end,
       })
 
-      -- Blink.cmp completion capabilities
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      -- Per-server settings. mason-lspconfig v2 enables installed servers itself,
+      -- so overrides must go through vim.lsp.config (its old `handlers` option is gone).
+      vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
 
-      local lspconfig = require("lspconfig")
+      -- TypeScript & JavaScript with auto-import and inlay hints
+      vim.lsp.config("ts_ls", {
+        settings = {
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = false,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            preferences = {
+              includeCompletionsForModuleExports = true,
+              quotePreference = "auto",
+            },
+          },
+          javascript = {
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            preferences = {
+              includeCompletionsForModuleExports = true,
+              quotePreference = "auto",
+            },
+          },
+        },
+      })
 
-      -- Mason-lspconfig automatic installation and setup handlers
+      -- TailwindCSS: also complete classes inside cva()/cx()/cn() helpers
+      vim.lsp.config("tailwindcss", {
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+              },
+            },
+          },
+        },
+      })
+
+      -- Lua language server
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim", "Snacks" },
+            },
+            workspace = {
+              checkThirdParty = false,
+            },
+            telemetry = { enable = false },
+          },
+        },
+      })
+
       require("mason-lspconfig").setup({
         ensure_installed = {
           "ts_ls",
@@ -141,96 +210,6 @@ return {
           "cssls",
           "jsonls",
           "lua_ls",
-        },
-        automatic_installation = true,
-        handlers = {
-          -- Default server setup
-          function(server_name)
-            lspconfig[server_name].setup({
-              capabilities = capabilities,
-            })
-          end,
-
-          -- TypeScript & JavaScript with auto-import
-          ["ts_ls"] = function()
-            lspconfig.ts_ls.setup({
-              capabilities = capabilities,
-              settings = {
-                typescript = {
-                  inlayHints = {
-                    includeInlayParameterNameHints = "all",
-                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                    includeInlayFunctionParameterTypeHints = true,
-                    includeInlayVariableTypeHints = false,
-                    includeInlayPropertyDeclarationTypeHints = true,
-                    includeInlayFunctionLikeReturnTypeHints = true,
-                    includeInlayEnumMemberValueHints = true,
-                  },
-                  suggest = {
-                    completeFunctionCalls = true,
-                  },
-                  preferences = {
-                    includeCompletionsForModuleExports = true,
-                    quotePreference = "auto",
-                  },
-                },
-                javascript = {
-                  suggest = {
-                    completeFunctionCalls = true,
-                  },
-                  preferences = {
-                    includeCompletionsForModuleExports = true,
-                    quotePreference = "auto",
-                  },
-                },
-              },
-            })
-          end,
-
-          -- TailwindCSS language server
-          ["tailwindcss"] = function()
-            lspconfig.tailwindcss.setup({
-              capabilities = capabilities,
-              filetypes = {
-                "html",
-                "css",
-                "scss",
-                "javascript",
-                "javascriptreact",
-                "typescript",
-                "typescriptreact",
-              },
-              settings = {
-                tailwindCSS = {
-                  experimental = {
-                    classRegex = {
-                      { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                      { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-                      { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-                    },
-                  },
-                },
-              },
-            })
-          end,
-
-          -- Lua language server
-          ["lua_ls"] = function()
-            lspconfig.lua_ls.setup({
-              capabilities = capabilities,
-              settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { "vim", "Snacks" },
-                  },
-                  workspace = {
-                    checkThirdParty = false,
-                  },
-                  telemetry = { enable = false },
-                },
-              },
-            })
-          end,
         },
       })
     end,

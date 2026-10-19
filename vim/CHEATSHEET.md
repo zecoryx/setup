@@ -7,6 +7,7 @@
 
 | Tugma | Vazifasi |
 | :--- | :--- |
+| `Ctrl + Space` keyin `f` | **Sessiya/loyiha menejeri** (fzf popup: ochiq sessiyalar + `~/Projects`) |
 | `Ctrl + Space` keyin `s` | Barcha sessiyalar daraxti (`Enter` — kirish, `x` keyin `y` — o'chirish) |
 | `Ctrl + Space` keyin `w` | Barcha oynalar (windows) daraxti |
 | `Ctrl + Space` keyin `Ctrl + s` | Hozirgi sessiyalarni xotiraga saqlash |
@@ -16,11 +17,15 @@
 | `Ctrl + Space` keyin `d` | Sessiyadan chiqish (orqa fonda qoladi) |
 | `Ctrl + Space` keyin `c` | Yangi oyna (window) ochish |
 | `Shift + Alt + h` / `l` | Oynalar (tablar) bo'yicha chapga / o'ngga o'tish |
+| `Ctrl + Space` keyin `g` | Nomi bo'yicha sessiyaga o'tish (sessionist) |
+| `Ctrl + Space` keyin `S` | Oxirgi ikki sessiya orasida tez almashish (sessionist) |
+| `Ctrl + Space` keyin `X` | Hozirgi sessiyani o'chirish (sessionist) |
 
 Terminal buyruqlari:
 * `tmux attach` — Oxirgi sessiyaga ulanish
 * `tmux attach -t <nomi>` — Aniq bitta sessiyaga ulanish
 * `tmux list-sessions` — Barcha sessiyalar ro'yxatini ko'rish
+* `ts` — Sessiya/loyiha menejerini terminaldan ochish (`Prefix + f` bilan bir xil)
 
 ---
 
@@ -98,6 +103,7 @@ Terminal buyruqlari:
 | `Ctrl + p` / `Ctrl + n` | `p` dan keyin: oldin nusxalangan matnlarni almashtirib ko'rish (Yanky) |
 | `Space + y` | Nusxalangan matnlar tarixi ro'yxati |
 | `Ctrl + \` | Tezkor suzuvchi (float) terminalni ochish / yashirish (Snacks) |
+| `Space + l` | Lazy plagin menejerini ochish |
 
 ---
 
@@ -110,6 +116,12 @@ Terminal buyruqlari:
 | `Space + g + h` | Faylning commitlar tarixi |
 | `Space + g + p` | GitHub Pull Requestlar ro'yxati (Octo) |
 | `Space + g + i` | GitHub Issuelar ro'yxati |
+| `] + c` / `[ + c` | Keyingi / oldingi o'zgargan blokka (hunk) sakrash |
+| `Space + h + p` | Hunk o'zgarishini float oynada ko'rish (preview) |
+| `Space + h + s` | Hunkni stage qilish |
+| `Space + h + r` | Hunkni bekor qilish (reset) |
+| `Space + h + b` | Qator uchun to'liq git blame |
+| `Space + t + b` | Inline blame matnini yoqish / o'chirish |
 | `co` | Merge konfliktda: bizning tarafni olish |
 | `ct` | Merge konfliktda: ularning tarafini olish |
 | `cb` | Merge konfliktda: ikkala tarafni ham saqlash |

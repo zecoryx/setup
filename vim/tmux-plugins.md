@@ -1,80 +1,85 @@
-# Tmux O'rnatilgan Plaginlar va Vositalar
+# Tmux Plaginlar va Sessiya Boshqaruvi
 
-Ushbu hujjatda tizimda (`~/.config/tmux/plugins/`) mavjud bo'lgan, Tmux bilan birga ishlatiladigan barcha o'rnatilgan plaginlar, ularning vazifalari, sozlamalari va kerakli CLI bog'liqliklari keltirilgan.
+Ushbu hujjat `tmux.conf` tomonidan **haqiqatda yuklanadigan** plaginlarni va sessiyalarni
+boshqarish vositalarini tavsiflaydi. Diskda bo'lsa-yu, `tmux.conf`da `@plugin` qatori
+bo'lmasa — TPM uni yuklamaydi. Shuning uchun bu ro'yxat `tmux.conf` bilan bir xil bo'lishi shart.
 
 ---
 
-## 1. O'rnatilgan Tmux Plaginlari Ro'yxati
+## 1. Yuklanadigan Plaginlar
 
-| # | Plagin | Manba (Repository) | Asosiy Vazifasi |
+| # | Plagin | Manba | Vazifasi |
 |---|---|---|---|
-| 1 | **TPM** | [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm) | Tmux plaginlarini avtomatik yuklash, o'rnatish va yangilash menejeri |
-| 2 | **tmux-sessionx** | [omerxx/tmux-sessionx](https://github.com/omerxx/tmux-sessionx) | Jonli preview va `zoxide` (`z`) integratsiyasiga ega fuzzy sessiyalar menejeri |
-| 3 | **tmux-fzf** | [sainnhe/tmux-fzf](https://github.com/sainnhe/tmux-fzf) | Fzf orqali barcha Tmux sessiyalari, oynalari, panellari va buyruqlarini qidirish |
-| 4 | **tmux-resurrect** | [tmux-plugins/tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) | Kompyuter o'chirilganda yoki qayta yoqilganda sessiyalar va splitlarni xotirada saqlash/tiklash |
-| 5 | **tmux-continuum** | [tmux-plugins/tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) | Har 10–15 daqiqada sessiyalarni avtomatik saqlab borish |
-| 6 | **tmux-sessionist** | [tmux-plugins/tmux-sessionist](https://github.com/tmux-plugins/tmux-sessionist) | Sessiyalar bo'yicha tezkor yordamchi buyruqlar va navigatsiya |
+| 1 | **TPM** | [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm) | Plagin menejeri: o'rnatish, yangilash, tozalash |
+| 2 | **tmux-resurrect** | [tmux-plugins/tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) | Sessiya, oyna va panellarni diskka saqlash / tiklash |
+| 3 | **tmux-continuum** | [tmux-plugins/tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) | Resurrect holatini fonda avtomatik saqlab borish |
+| 4 | **tmux-sessionist** | [tmux-plugins/tmux-sessionist](https://github.com/tmux-plugins/tmux-sessionist) | Sessiyalar uchun qo'shimcha yengil buyruqlar |
+
+### `tmux-resurrect`
+Tmux muhitini diskka yozadi (`~/.local/share/tmux/resurrect/`).
+- `Prefix + Ctrl+s` — saqlash (`tmux.conf`da aniq bind qilingan, xabar chiqaradi)
+- `Prefix + Ctrl+r` — oxirgi saqlangan holatni tiklash
+- `@resurrect-strategy-nvim 'session'` — Neovim buferlari ham tiklanadi
+
+### `tmux-continuum`
+`tmux-resurrect` ustida ishlaydi, har 10 daqiqada avtomatik saqlaydi.
+- `@continuum-save-interval '10'` — saqlash davri (daqiqa)
+- `@continuum-restore 'off'` — tmux ishga tushganda **avtomatik tiklanmaydi** (ataylab:
+  tiklash `Prefix + Ctrl+r` bilan qo'lda bajariladi). Avtomatik tiklash kerak bo'lsa `'on'` qiling.
+
+### `tmux-sessionist`
+Prefiks ostidagi sessiya utilitalari (manbadan tekshirilgan standart tugmalar):
+`g` — nomi bo'yicha sessiyaga o'tish, `C` — yangi sessiya, `X` — sessiyani o'chirish,
+`S` — oxirgi ikki sessiya orasida almashish, `t` — panelni boshqa sessiyaga ko'chirish,
+`@` — panelni yangi oynaga ajratish.
 
 ---
 
-## 2. Plaginlarning Batafsil Tavsifi
+## 2. Sessiya Menejeri (plagin emas, repo skripti)
 
-### 1. `omerxx/tmux-sessionx`
-- **Tavsif**: Neovim va Tmux hamjamiyatida eng ommabop interaktiv sessiyalar menejeri.
-- **Xususiyatlari**:
-  - Tanlangan sessiya ichidagi kod/fayllarni yon tomonda jonli (preview) qilib ko'rsatadi.
-  - `zoxide` (`z`) bilan to'liq integratsiya qilingan: kompyuterda eng ko'p ishlatilgan kataloglarni darhol yangi sessiya sifatida ochish imkonini beradi.
-  - Sessiyalarni ro'yxat ichidan turib o'chirish (`Alt+Backspace` yoki `Ctrl+x`), qayta nomlash (`Ctrl+r`) va oynalar ro'yxatiga o'tish (`Ctrl+w`).
-- **Ishlatiladigan CLI vositalari**: `fzf`, `bat`, `zoxide`.
+Sessiyalarni fuzzy tanlash uchun tashqi plagin **ishlatilmaydi** — buning o'rniga
+repodagi o'z skripti bor: `tmux/bin/tmux-session-manager`.
 
-### 2. `sainnhe/tmux-fzf`
-- **Tavsif**: Tmux'dagi barcha obyektlarni `fzf` orqali boshqarish uchun keng qamrovli vosita.
-- **Xususiyatlari**:
-  - Ochiq sessiyalar, oynalar va panellarni qidirib topish va almashtirish.
-  - Tmux buyruqlarini nomma-nom qidirib ishga tushirish.
-  - Tmux clipboard (bufer) tarixini qidirish va joriy oynaga qo'yish.
+- **Chaqirish**:
+  - `Prefix + f` — tmux popup oynasida ochiladi
+  - yoki terminalda `ts` (shuningdek `tmux-sessionizer`, `tmux-session-manager` nomlari bilan)
+- **Nima qiladi**: ochiq tmux sessiyalari **va** `~/Projects` ichidagi loyihalarni bitta
+  `fzf` ro'yxatida ko'rsatadi. Loyiha tanlansa — shu papkada yangi sessiya yaratib ulaydi.
+- **Tugmalar**: `Enter` — ulanish/almashish, `Ctrl+x` — sessiyani o'chirish, `Ctrl+n` — yangi sessiya.
+- **Bog'liqlik**: faqat `fzf`.
 
-### 3. `tmux-plugins/tmux-resurrect`
-- **Tavsif**: Tmux muhitini qo'lda xotiraga saqlash va tiklash.
-- **Standart tugmalar**:
-  - `Prefix + Ctrl+s` — Barcha sessiyalar, oynalar va Neovim holatini diskka saqlaydi (`~/.local/share/tmux/resurrect/`).
-  - `Prefix + Ctrl+r` — Oxirgi saqlangan holatni qayta tiklaydi.
-
-### 4. `tmux-plugins/tmux-continuum`
-- **Tavsif**: `tmux-resurrect` bilan birga ishlaydi va sessiyalarni ma'lum vaqt oralig'ida (masalan, har 10 daqiqada) fonda avtomatik saqlab turadi.
-- **Parametr**: `set -g @continuum-save-interval '10'`
-
-### 5. `tmux-plugins/tmux-sessionist`
-- **Tavsif**: Tmux sessiyalarini boshqarish uchun qo'shimcha yengil utilitalar to'plami.
+> Eslatma: `tmux-sessionx` va `tmux-fzf` plaginlari avval diskda yotgan, lekin `tmux.conf`da
+> ro'yxatdan o'tmagani uchun hech qachon yuklanmagan. Yuqoridagi skript ularning ishini
+> bajargani uchun ikkalasi olib tashlandi. Kerak bo'lsa `tmux.conf`ga `@plugin` qatorini
+> qo'shib, `Prefix + I` bosish kifoya.
 
 ---
 
-## 3. Bog'liq CLI Vositalari (Tizimda O'rnatilgan)
+## 3. Bog'liq CLI Vositalari
 
-Ushbu plaginlarning to'liq va tez ishlashi uchun zarur bo'lgan tashqi terminal vositalari:
-- **`zoxide` (`z`)**: `/usr/bin/zoxide` — Eng ko'p kirilgan papkalarni avtomatik eslab qoluvchi CD almashtiruvchisi.
-- **`fzf`**: `/usr/bin/fzf` — Fuzzy qidiruv dvigateli.
-- **`bat`**: `/usr/bin/bat` — Sintaksis ranglariga ega fayllarni ko'rish vositasi (`sessionx` preview uchun).
-- **`gh`**: `/home/zecoryx/.local/bin/gh` — GitHub rasmiy CLI vositasi.
-- **`ghui`**: `/home/zecoryx/.local/bin/ghui` — GitHub uchun interaktiv TUI boshqaruv paneli.
-- **`lazygit`**: `/usr/bin/lazygit` — Terminal Git boshqaruvchisi.
+- **`fzf`** — fuzzy tanlash dvigateli (sessiya menejeri uchun **majburiy**)
+- **`ripgrep` (`rg`)** — Neovim live grep uchun
+- **`zoxide` (`z`)** — tez-tez ishlatiladigan papkalarga o'tish (shellda, `.zshrc`da ulangan)
+- **`bat`** — sintaksis ranglari bilan fayl ko'rish
+- **`lazygit`** — Neovimdan `<leader>gg` bilan ochiladi
+- **`gh`** — GitHub CLI, `octo.nvim` shunga tayanadi
+
+`install.sh` birinchi to'rttasining mavjudligini tekshiradi.
 
 ---
 
-## 4. Plaginlar Joylashuvi va TPM Boshqaruvi
+## 4. Joylashuv va TPM Boshqaruvi
 
-Barcha plaginlar quyidagi katalogda saqlanadi:
 ```text
-~/.config/tmux/plugins/
-├── tpm/
-├── tmux-sessionx/
-├── tmux-fzf/
-├── tmux-resurrect/
-├── tmux-continuum/
-└── tmux-sessionist/
+~/.config/tmux/
+├── tmux.conf -> ~/Projects/setup/vim/tmux/tmux.conf
+└── plugins/
+    ├── tpm/
+    ├── tmux-resurrect/
+    ├── tmux-continuum/
+    └── tmux-sessionist/
 ```
 
-TPM orqali plaginlarni boshqarish:
-- `Prefix + I` — Yangi plaginlarni o'rnatish.
-- `Prefix + U` — O'rnatilgan plaginlarni yangilash.
-- `Prefix + Alt + u` — Ro'yxatdan olib tashlangan plaginlarni diskdan tozalash.
+- `Prefix + I` — `tmux.conf`dagi yangi plaginlarni o'rnatish
+- `Prefix + U` — plaginlarni yangilash
+- `Prefix + Alt + u` — `tmux.conf`dan olib tashlangan plaginlarni diskdan tozalash
