@@ -269,11 +269,17 @@ Ghostty konfiguratsiyasi `ghostty/config` faylida saqlanadi.
   window-padding-x = 12
   window-padding-y = 12
   ```
-- **Kursor stili**:
+- **Kursor stili**: configda faqat `cursor-style-blink = false` bor.
+  `cursor-style`ning default'i allaqachon `block`, shuning uchun uni yozish shart emas:
   ```ini
-  cursor-style = "block"
   cursor-style-blink = false
+  # boshqa shakl kerak bo'lsa: cursor-style = bar | underline
   ```
+
+- **Shell**: configda `command` **ataylab yo'q**. Ghostty `/etc/passwd`dagi shellni
+  (`/usr/bin/zsh`) **login shell** sifatida ishga tushiradi. `command = /usr/bin/zsh`
+  deb yozsangiz u login bo'lmaydi va `/etc/profile` sourcelanmaydi — tmux esa login
+  shell beradi, natijada tmux ichidagi va tashqarisidagi muhit farq qiladi.
 
 ### O'zgarishlarni tekshirish
 Ghostty odatda `ghostty/config` faylidagi o'zgarishlarni saqlangandan so'ng darhol qayta yuklaydi. Agar avtomatik qo'llanmasa, yangi oyna ochish (`Ctrl+Shift+N`) kifoya qiladi.
