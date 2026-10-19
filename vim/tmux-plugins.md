@@ -48,6 +48,26 @@ repodagi o'z skripti bor: `tmux/bin/tmux-session-manager`.
 - **Tugmalar**: `Enter` — ulanish/almashish, `Ctrl+x` — sessiyani o'chirish, `Ctrl+n` — yangi sessiya.
 - **Bog'liqlik**: faqat `fzf`.
 
+## 2.1. Vositalar Menyusi (`Prefix + T`)
+
+Tahrirlanayotgan faylga bog'liq bo'lmagan TUI vositalari bitta menyu ortida yig'ilgan,
+shunda uchta alohida tugmani yodlash kerak bo'lmaydi — menyu o'zi nimani ocha olishini ko'rsatadi.
+
+| Menyudagi tugma | Vosita | Joylashuvi |
+|---|---|---|
+| `g` | `lazygit` | `/usr/bin/lazygit` |
+| `d` | `lazydocker` | `/usr/bin/lazydocker` |
+| `s` | `lazysql` | `~/.local/bin/lazysql` |
+| `f` | sessiya menejeri | `~/.local/bin/ts` |
+
+Hammasi `display-popup` oynasida ochiladi, ya'ni joriy panel buzilmaydi.
+
+> `lazydocker` docker demoni ishlab turishini talab qiladi. Demon `enable` qilinmagan,
+> shuning uchun qayta yuklangandan keyin `sudo systemctl start docker` kerak bo'lishi mumkin.
+>
+> `lazysql`da saqlangan ulanish yo'q (`~/.config/lazysql/` mavjud emas), shuning uchun
+> birinchi ochilganda ulanish ma'lumotlarini so'raydi.
+
 > Eslatma: `tmux-sessionx` va `tmux-fzf` plaginlari avval diskda yotgan, lekin `tmux.conf`da
 > ro'yxatdan o'tmagani uchun hech qachon yuklanmagan. Yuqoridagi skript ularning ishini
 > bajargani uchun ikkalasi olib tashlandi. Kerak bo'lsa `tmux.conf`ga `@plugin` qatorini
