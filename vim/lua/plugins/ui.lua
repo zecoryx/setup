@@ -102,6 +102,7 @@ return {
         padding = { 1, 2 },
       },
       spec = {
+        { "<leader>s", group = "Search" },
         { "<leader>g", group = "Git tools / hunks" },
         { "<leader>c", group = "Code actions / Format" },
         { "<leader>t", group = "Toggles" },

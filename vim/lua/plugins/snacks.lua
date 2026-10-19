@@ -67,10 +67,10 @@ return {
     end,
     keys = {
       -- One letter each: these are the keys pressed dozens of times a day
-      { "<leader>f", function() Snacks.picker.files() end, desc = "Find files" },
-      { "<leader>s", function() Snacks.picker.grep() end, desc = "Search text in project" },
-      { "<leader>/", function() Snacks.picker.grep_buffers() end, desc = "Search text in open buffers" },
-      { "<leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>sf", function() Snacks.picker.files() end, desc = "Files by name (project)" },
+      { "<leader>sb", function() Snacks.picker.buffers() end, desc = "Open buffers" },
+      { "<leader>ss", function() Snacks.picker.grep() end, desc = "Text in project" },
+      { "<leader>s/", function() Snacks.picker.grep_buffers() end, desc = "Text in open buffers" },
 
       { "<leader>i", function() Snacks.image.hover() end, desc = "Image preview" },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit floating window" },

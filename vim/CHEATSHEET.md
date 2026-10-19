@@ -55,26 +55,27 @@ Terminal buyruqlari:
 
 ## 3. Fayllar va Qidiruv (Neovim)
 
-> **Qidiruv qoidasi** — yuqori yarmi fayl, pastki yarmi matn, qamrov kengayib boradi:
+> **Barcha qidiruvlar `Space + s` ostida.** Uni bosganingizda menyu o'zi chiqadi —
+> hech narsa yodlash shart emas:
 >
 > ```
->  FAYL (nom bo'yicha)   hozir ochiqlar        Space + b
->                        butun loyiha          Space + f
+>  Space + s  →   f   fayl nomi bo'yicha   (butun loyiha)
+>                 b   ochiq fayllar
+>                 s   matn ichidan         (butun loyiha)
+>                 /   matn ichidan         (faqat ochiq fayllar)
 >
->  MATN (ichidan)        hozirgi fayl          /
->                        ochiq fayllar         Space + /
->                        butun loyiha          Space + s
+>  /          →   hozirgi fayl ichida (oddiy vim qidiruvi, leader kerak emas)
 > ```
 
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Space + f` | Fayl **nomi** bo'yicha qidiruv (butun loyiha) |
-| `Space + s` | **Matn** qidirish (butun loyiha, o'zim yozaman) |
-| `Space + /` | **Matn** qidirish — faqat ochiq fayllar ichida |
+| `Space + s` keyin `f` | Fayl **nomi** bo'yicha qidiruv (butun loyiha) |
+| `Space + s` keyin `s` | **Matn** qidirish (butun loyiha, o'zim yozaman) |
+| `Space + s` keyin `/` | **Matn** qidirish — faqat ochiq fayllar ichida |
 | `Space + o` | Hozirgi fayl turgan papkani ochish (Oil explorer) |
 | `Space + e` | Loyihaning bosh ildiz papkasini ochish (Oil project root) |
 | `-` (minus) | Papkalar iyerarxiyasida 1 qadam yuqoriga / orqaga chiqish |
-| `Space + b` | Ochiq turgan fayllar ro'yxati (Buffers picker) |
+| `Space + s` keyin `b` | Ochiq turgan fayllar ro'yxati (Buffers picker) |
 | `H` / `L` | Ochiq fayllar orasida chapga / o'ngga o'tish |
 | `Space + q` | Hozirgi faylni yopish (buffer) |
 
