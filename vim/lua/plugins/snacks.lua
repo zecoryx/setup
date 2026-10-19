@@ -61,21 +61,13 @@ return {
       })
     end,
     keys = {
-      -- Instant file picker
-      { "<leader><space>", function() Snacks.picker.files() end, desc = "Find files (Instant)" },
+      -- One letter each: these are the keys pressed dozens of times a day
+      { "<leader>f", function() Snacks.picker.files() end, desc = "Find files" },
+      { "<leader>s", function() Snacks.picker.grep() end, desc = "Search text (grep)" },
+      { "<leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>r", function() Snacks.picker.recent() end, desc = "Recent files" },
 
-      -- Fuzzy finders
-      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
-      { "<leader>fg", function() Snacks.picker.grep() end, desc = "Live grep" },
-      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find buffers" },
-      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent files" },
-      { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart find files" },
-      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find config files" },
-
-      -- Image preview
-      { "<leader>mi", function() Snacks.image.hover() end, desc = "Hover image preview" },
-
-      -- Git UI (Lazygit)
+      { "<leader>i", function() Snacks.image.hover() end, desc = "Image preview" },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit floating window" },
     },
   },

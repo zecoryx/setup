@@ -74,7 +74,9 @@ setup/vim/
   - `vim-tmux-navigator`: `Ctrl+h/j/k/l` bilan Neovim splitlari va tmux panellari orasida uzluksiz harakat.
   - `which-key.nvim`: `<leader>` bosilganda tugmalar menyusi.
 - **`oil.lua`**: Fayllar tizimini xuddi oddiy Vim buferi kabi tahrirlash imkonini beradi (`-` tugmasi). Fayllarni qayta nomlash, ko'chirish yoki o'chirish to'g'ridan-to'g'ri matn tahriri orqali bajariladi.
-- **`snacks.lua`**: Eng katta modul. Fuzzy picker: fayllar (`<leader><space>`, `<leader>ff`), live grep (`<leader>fg`), buferlar (`<leader>fb`), yaqinda ochilganlar (`<leader>fr`), config fayllari (`<leader>fc`). Shuningdek: suzuvchi terminal (`Ctrl+\`), LazyGit (`<leader>gg`), rasm prevyusi (`<leader>mi`), notifier, indent chiziqlari va `bigfile` optimizatsiyasi.
+- **`snacks.lua`**: Eng katta modul. Fuzzy picker bitta harfli tugmalarda: fayllar (`<leader>f`), live grep (`<leader>s`), buferlar (`<leader>b`), yaqinda ochilganlar (`<leader>r`). Shuningdek: suzuvchi terminal (`Ctrl+\`), LazyGit (`<leader>gg`), rasm prevyusi (`<leader>i`), notifier, indent chiziqlari va `bigfile` optimizatsiyasi.
+
+  > Tugmalar ataylab bitta harf: `<leader>` ostida **bitta ham** 'ham mapping, ham prefiks' holati qolmagan, shuning uchun hech bir tugma `timeoutlen` (300ms) kutmaydi.
 - **`lsp.lua`**: Til serverlari ekotizimi:
   - `mason.nvim` va `mason-lspconfig.nvim`: Serverlarni avtomatik o'rnatish va boshqarish.
   - `ensure_installed` ro'yxati: `ts_ls`, `tailwindcss`, `html`, `cssls`, `jsonls`, `lua_ls`.
@@ -119,7 +121,7 @@ Redaktor harakati va tashqi ko'rinishiga oid barcha standart parametrlar shu yer
   ```
 - Kursor atrofida ko'rinadigan qatorlar zaxirasi:
   ```lua
-  opt.scrolloff = 8 -- kursordan pastda va tepada kamida 8 qator doim ko'rinadi
+  opt.scrolloff = 16 -- kursordan pastda va tepada kamida 16 qator doim ko'rinadi
   ```
 
 ### Tugmalar birikmasini o'zgartirish (`lua/config/keymaps.lua`)

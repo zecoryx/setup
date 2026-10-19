@@ -57,16 +57,15 @@ Terminal buyruqlari:
 
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Space + Space` | Fayl nomi bo'yicha tezkor qidiruv (Snacks Picker) |
-| `Space + f + g` | Kod ichidan matn qidirish (Live Grep) |
+| `Space + f` | Fayl nomi bo'yicha tezkor qidiruv (Snacks Picker) |
+| `Space + s` | Kod ichidan matn qidirish (Live Grep) |
+| `Space + r` | Yaqinda ochilgan fayllar |
 | `Space + o` | Hozirgi fayl turgan papkani ochish (Oil explorer) |
 | `Space + e` | Loyihaning bosh ildiz papkasini ochish (Oil project root) |
 | `-` (minus) | Papkalar iyerarxiyasida 1 qadam yuqoriga / orqaga chiqish |
-| `Space + f + b` | Ochiq turgan fayllar ro'yxati (Buffers picker) |
+| `Space + b` | Ochiq turgan fayllar ro'yxati (Buffers picker) |
 | `H` / `L` | Ochiq fayllar orasida chapga / o'ngga o'tish |
-| `Space + b + d` | Hozirgi faylni yopish |
-| `Space + b + o` | Boshqa hamma fayllarni yopib, faqat bittasini qoldirish |
-| `Space + b + D` | Barcha ochiq fayllarni birdaniga yopish |
+| `Space + q` | Hozirgi faylni yopish (buffer) |
 
 ---
 
@@ -98,6 +97,7 @@ Terminal buyruqlari:
 | `Space + p` (visualda) | Nusxalangan matnni almashtirib yubormasdan ustiga qo'yish |
 | `Ctrl + \` | Tezkor suzuvchi (float) terminalni ochish / yashirish (Snacks) |
 | `Space + l` | Lazy plagin menejerini ochish |
+| `Space + i` | Kursor ostidagi rasm prevyusi |
 
 ---
 

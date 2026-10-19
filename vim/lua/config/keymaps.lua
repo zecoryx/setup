@@ -46,12 +46,7 @@ map("n", "-", "<Cmd>Oil<CR>", { desc = "Open parent directory" })
 -- Buffers
 map("n", "H", "<Cmd>bprevious<CR>", { desc = "Previous buffer", silent = true })
 map("n", "L", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
-map("n", "<leader>bd", "<Cmd>bdelete<CR>", { desc = "Close current buffer", silent = true })
-map("n", "<leader>bo", function()
-  local current = vim.fn.bufnr()
-  vim.cmd('bufdo if bufnr("") != ' .. current .. ' | bdelete | endif')
-end, { desc = "Close other buffers", silent = true })
-map("n", "<leader>bD", "<Cmd>bufdo bdelete<CR>", { desc = "Close all buffers", silent = true })
+map("n", "<leader>q", "<Cmd>bdelete<CR>", { desc = "Close current buffer", silent = true })
 
 -- Plugin manager (Lazy)
 map("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Lazy plugin manager" })

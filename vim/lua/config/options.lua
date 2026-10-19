@@ -21,8 +21,9 @@ opt.smartcase = true
 opt.termguicolors = true
 opt.cursorline = true
 opt.signcolumn = "yes"
-opt.scrolloff = 8
+opt.scrolloff = 16       -- keep the cursor near the middle while reading
 opt.sidescrolloff = 8
+opt.mouse = ""           -- no mouse in nvim: no accidental cursor jumps
 
 -- Eliminate 3-line bottom clutter:
 opt.cmdheight = 0        -- Hide command line when not typing ':'
