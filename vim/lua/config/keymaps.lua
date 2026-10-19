@@ -10,7 +10,7 @@ map("n", "<leader>x", "<C-w>c", { desc = "Close current split" })
 map("n", "<leader>=", "<C-w>=", { desc = "Equalize split sizes" })
 
 -- Window split zoom / maximize toggle
-map("n", "<leader>m", function()
+map("n", "<leader>z", function()
   if vim.t.maximized then
     vim.cmd("wincmd =")
     vim.t.maximized = false
@@ -19,7 +19,7 @@ map("n", "<leader>m", function()
     vim.cmd("wincmd |")
     vim.t.maximized = true
   end
-end, { desc = "Toggle maximize split" })
+end, { desc = "Toggle maximize split (same letter as tmux prefix z)" })
 
 -- Window split resizing (Shift + Arrow keys)
 map("n", "<S-Right>", "<cmd>vertical resize +3<CR>", { desc = "Increase window width" })

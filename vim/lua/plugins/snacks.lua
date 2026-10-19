@@ -39,8 +39,13 @@ return {
       },
     },
     config = function(_, opts)
-      vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#252530" })
-      vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = "#6e94b2" })
+      local function indent_hl()
+        vim.api.nvim_set_hl(0, "SnacksIndent", { link = "Whitespace" })
+        vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "Keyword" })
+      end
+      indent_hl()
+      vim.api.nvim_create_autocmd("ColorScheme", { callback = indent_hl })
+
       require("snacks").setup(opts)
 
       -- Floating terminal toggle (<C-\>); window style comes from opts.terminal.win

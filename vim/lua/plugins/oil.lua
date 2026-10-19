@@ -30,7 +30,12 @@ return {
       },
     },
     config = function(_, opts)
-      vim.api.nvim_set_hl(0, "OilDirIcon", { fg = "#7e9cd8" })
+      local function dir_hl()
+        vim.api.nvim_set_hl(0, "OilDirIcon", { link = "Directory" })
+      end
+      dir_hl()
+      vim.api.nvim_create_autocmd("ColorScheme", { callback = dir_hl })
+
       require("oil").setup(opts)
     end,
   },

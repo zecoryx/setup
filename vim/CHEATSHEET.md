@@ -38,7 +38,7 @@ Terminal buyruqlari:
 | `Space + h` | Gorizontal split (tepa-pastga oyna ochish) |
 | `Space + g + ...` | Git amallari bitta prefiks ostida — pastdagi "Git" bo'limiga qarang |
 | `Space + x` | Hozirgi splitni yopish |
-| `Space + m` | Splitni butun ekranga kattalashtirish / qaytarish (Maximize) |
+| `Space + z` | Splitni butun ekranga kattalashtirish / qaytarish — **tmux `Prefix + z` bilan bir xil harf** |
 | `Space + =` | Barcha splitlarni tenglashtirish |
 | `Ctrl + h / j / k / l` | Splitlar orasida harakatlanish |
 | `Shift + Strelkalar` | Split o'lchamini o'zgartirish — **nvim ichida nvim splitini, shellda tmux panelini** (`Ctrl+h/j/k/l` kabi) |
