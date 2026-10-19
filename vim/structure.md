@@ -40,25 +40,16 @@ setup/vim/
 │       ├── treesitter.lua                 # Sintaksisni ranglash va AST tahlili
 │       ├── formatting.lua                 # Conform.nvim avtomatik kod tekislash (format on save)
 │       ├── git.lua                        # Gitsigns git holati, diff va o'zgarishlar
-│       ├── editor.lua                     # Qavslar, matn o'rash, izohlar va undotree
-│       ├── colors.lua                     # Rang kodlari va TailwindCSS klasslari prevyusi
-│       └── real_icons.lua                 # Terminalda vektor (SVG) piktogrammalarini chizish
+│       ├── editor.lua                     # Qavslarni juftlash va Flash sakrash
+│       └── colors.lua                     # Rang kodlari va TailwindCSS klasslari prevyusi
 │
 ├── tmux/
 │   ├── tmux.conf                          # Tmux server va oynalar boshqaruvi sozlamalari
 │   └── bin/
 │       └── tmux-session-manager           # Loyihalar va sessiyalar o'rtasida fzf orqali tezkor o'tish
 │
-├── ghostty/
-│   └── config                             # Ghostty terminal emulyatori sozlamalari (shrift, mavzu)
-│
-└── icons/
-    └── vscode-symbols/                    # Terminalda ko'rsatiladigan outline va fayl SVG ikonkalar
-        └── src/
-            ├── symbol-icon-theme.json     # Ikonkalarning kengaytmalar bilan bog'lanish qoidalari
-            └── icons/
-                ├── files/                 # Fayl turlari uchun SVG ikonkalari
-                └── folders/               # Faqat outline folder va folder-open SVG ikonkalari
+└── ghostty/
+    └── config                             # Ghostty terminal emulyatori sozlamalari (shrift, mavzu)
 ```
 
 ---
@@ -79,7 +70,6 @@ setup/vim/
 - **`ui.lua`**: Vizual ko'rinish va ergonomika:
   - `vague.nvim`: Ranglar palitrasi (colorscheme).
   - `lualine.nvim`: Global statusline (rejim, fayl nomi, diagnostika, git branch, qator raqami).
-  - `bufferline.nvim`: Yuqoridagi bufer tablari (`H`/`L` bilan almashinadi).
   - `nvim-web-devicons`: Fayl ikonkalari va loyihaga xos override'lar (`package.json`, `artisan`, `.env` ...).
   - `vim-tmux-navigator`: `Ctrl+h/j/k/l` bilan Neovim splitlari va tmux panellari orasida uzluksiz harakat.
   - `which-key.nvim`: `<leader>` bosilganda tugmalar menyusi.
@@ -96,16 +86,14 @@ setup/vim/
 - **`completion.lua`**: `blink.cmp` yuqori unumdorlikka ega avtoto'ldirish dvigateli. LSP, snippetlar, buferdagi so'zlar va fayl yo'llarini birlashtiradi.
 - **`treesitter.lua`**: Kod sintaksisini daraxt ko'rinishida tahlil qiladi (AST). Ranglash uchun asosiy dvigatel. `main` branch ishlatiladi va 14 til parseri avtomatik o'rnatiladi.
 - **`formatting.lua`**: `conform.nvim` yordamida faylni saqlash vaqtida avtomatik formatlash (`format_on_save`). Har bir til uchun kerakli formatlagichni ulaydi: `prettierd`/`prettier` (JS, TS, JSON, HTML, CSS), `pint` (PHP), `stylua` (Lua).
-- **`git.lua`**: `gitsigns.nvim` orqali fayl ichidagi qo'shilgan, o'zgartirilgan yoki o'chirilgan qatorlarni chap chekkada ko'rsatadi, inline blame va hunklarni boshqarishni ta'minlaydi.
+- **`git.lua`**: ikki plagin:
+  - `gitsigns.nvim`: chap chekkada qo'shilgan/o'zgartirilgan/o'chirilgan qatorlar, inline blame va hunk boshqaruvi (`]c`, `<leader>hp`, `<leader>hs`).
+  - `diffview.nvim`: o'zgarishlarni yonma-yon taqqoslash va fayl tarixi (`<leader>gd`, `<leader>gh`) - **agent yozgan kodni review qilish uchun asosiy vosita**.
 - **`editor.lua`**: Matn tahrirlash qulayliklari:
   - `mini.pairs`: Qavslar va qo'shtirnoqlarni avtomatik juftlash.
   - `flash.nvim`: `s` bilan ekrandagi istalgan joyga sakrash.
-  - `grug-far.nvim`: Loyiha bo'yicha qidir-almashtir (`<leader>sr`, `<leader>sw`).
-  - `trouble.nvim`: Diagnostika/symbol/reference ro'yxatlari (`<leader>xx`, `<leader>cs`).
-  - `yanky.nvim`: Clipboard tarixi (`<leader>y`, `Ctrl+p`/`Ctrl+n`).
-  - `undotree`: Tahrirlashlar shajarasi va tarixini vizual ko'rish (`<leader>u`).
+  - `flash.nvim`: `s` bilan ekrandagi istalgan joyga ikki harfda sakrash.
 - **`colors.lua`**: Kod ichidagi HEX, RGB rang kodlari va TailwindCSS rangli klasslarining orqa fonini mos rangda bo'yab ko'rsatish (`nvim-highlight-colors`).
-- **`real_icons.lua`**: Neovim ichida haqiqiy vektor (SVG) ikonkalarni terminalda chizib berish uchun `real-icons.nvim` integratsiyasi.
 
 ### Tmux Muhiti (`tmux/`)
 - **`tmux.conf`**: Prefiks tugmasini `Ctrl+Space`ga o'rnatadi, intuitiv splitlar (`v` vertikal, `h` gorizontal), oynalar o'rtasida o'tish, Neovim va Tmux o'rtasida to'siqsiz harakat (`Ctrl+h/j/k/l`), sessiya menejeri popup'i (`Prefix + f`), TPM plaginlari va Vague mavzusidagi status paneli.

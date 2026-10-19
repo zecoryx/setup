@@ -43,9 +43,9 @@ map("n", "<leader>o", "<Cmd>Oil<CR>", { desc = "Open parent directory of active 
 map("n", "<leader>e", "<Cmd>Oil .<CR>", { desc = "Open project root directory" })
 map("n", "-", "<Cmd>Oil<CR>", { desc = "Open parent directory" })
 
--- Buffers & tabs (Bufferline)
-map("n", "H", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer", silent = true })
-map("n", "L", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer", silent = true })
+-- Buffers
+map("n", "H", "<Cmd>bprevious<CR>", { desc = "Previous buffer", silent = true })
+map("n", "L", "<Cmd>bnext<CR>", { desc = "Next buffer", silent = true })
 map("n", "<leader>bd", "<Cmd>bdelete<CR>", { desc = "Close current buffer", silent = true })
 map("n", "<leader>bo", function()
   local current = vim.fn.bufnr()

@@ -71,44 +71,16 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
           end
 
-          -- Navigation & definitions
-          map("gd", function()
-            local ok, snacks = pcall(require, "snacks")
-            if ok and snacks.picker and snacks.picker.lsp_definitions then
-              snacks.picker.lsp_definitions()
-            else
-              vim.lsp.buf.definition()
-            end
-          end, "Go to Definition")
+          -- Navigation & definitions. snacks.nvim loads eagerly, so its picker is always there.
+          map("gd", function() Snacks.picker.lsp_definitions() end, "Go to Definition")
 
           map("gD", vim.lsp.buf.declaration, "Go to Declaration")
 
-          map("gr", function()
-            local ok, snacks = pcall(require, "snacks")
-            if ok and snacks.picker and snacks.picker.lsp_references then
-              snacks.picker.lsp_references()
-            else
-              vim.lsp.buf.references()
-            end
-          end, "Go to References")
+          map("gr", function() Snacks.picker.lsp_references() end, "Go to References")
 
-          map("gi", function()
-            local ok, snacks = pcall(require, "snacks")
-            if ok and snacks.picker and snacks.picker.lsp_implementations then
-              snacks.picker.lsp_implementations()
-            else
-              vim.lsp.buf.implementation()
-            end
-          end, "Go to Implementation")
+          map("gi", function() Snacks.picker.lsp_implementations() end, "Go to Implementation")
 
-          map("gy", function()
-            local ok, snacks = pcall(require, "snacks")
-            if ok and snacks.picker and snacks.picker.lsp_type_definitions then
-              snacks.picker.lsp_type_definitions()
-            else
-              vim.lsp.buf.type_definition()
-            end
-          end, "Type Definition")
+          map("gy", function() Snacks.picker.lsp_type_definitions() end, "Type Definition")
 
           -- Hover documentation & signature help
           map("K", function()

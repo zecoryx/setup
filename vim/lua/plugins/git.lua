@@ -7,8 +7,8 @@ return {
       signs = {
         add = { text = "▎" },
         change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
+        delete = { text = "" },
+        topdelete = { text = "" },
         changedelete = { text = "▎" },
         untracked = { text = "▎" },
       },
@@ -51,7 +51,7 @@ return {
     },
   },
 
-  -- Visual diff and file history viewer
+  -- Visual diff and file history viewer: the main tool for reviewing agent changes
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
@@ -66,42 +66,6 @@ return {
           layout = "diff2_horizontal",
         },
       },
-    },
-  },
-
-  -- 3-Way merge conflict resolution
-  {
-    "akinsho/git-conflict.nvim",
-    version = "*",
-    event = "BufReadPre",
-    opts = {
-      default_mappings = true,
-      disable_diagnostics = true,
-    },
-    keys = {
-      { "<leader>gc", "<cmd>GitConflictListQf<cr>", desc = "List git conflicts (Quickfix)" },
-    },
-  },
-
-  -- GitHub issues and pull requests integration
-  {
-    "pwntester/octo.nvim",
-    cmd = { "Octo" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "echasnovski/mini.icons",
-    },
-    opts = {
-      enable_builtin = true,
-      default_to_projects_v2 = true,
-      default_merge_method = "squash",
-      picker = "snacks",
-    },
-    keys = {
-      { "<leader>gi", "<cmd>Octo issue list<cr>", desc = "GitHub issues" },
-      { "<leader>gp", "<cmd>Octo pr list<cr>", desc = "GitHub pull requests" },
-      { "<leader>gr", "<cmd>Octo repo list<cr>", desc = "GitHub repositories" },
-      { "<leader>go", "<cmd>Octo<cr>", desc = "Octo menu" },
     },
   },
 }

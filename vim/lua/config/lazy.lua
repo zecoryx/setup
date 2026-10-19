@@ -28,23 +28,9 @@ require("lazy").setup({
     version = false,
   },
 
-  -- Floating UI styling and icons
+  -- Floating UI styling
   ui = {
     border = "rounded",
-    icons = {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
-      lazy = "💤 ",
-    },
   },
 
   -- Startup optimization: disable unused built-in Vim plugins

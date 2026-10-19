@@ -85,8 +85,6 @@ Terminal buyruqlari:
 | `[ + d` / `] + d` | Oldingi / keyingi xatolik yoki ogohlantirishga sakrash |
 | `Space + c + d` | Kursordagi diagnostika (xatolik) matnini float oynada to'liq ko'rish |
 | `Space + t + h` | Inlay Hints (kod ustidagi yashirin tiplarni ko'rsatish/yashirish) |
-| `Space + x + x` | Loyihadagi barcha xatolar ro'yxati (Trouble diagnostics) |
-| `Space + c + s` | Funksiya va metodlar iyerarxiyasi (Trouble symbols) |
 
 ---
 
@@ -96,12 +94,7 @@ Terminal buyruqlari:
 | :--- | :--- |
 | `s` | Flash: ko'rinib turgan istalgan so'zga 2 harfda sakrash |
 | `Space + c + f` | Kodni tekislash/formatlash (Conform: Prettier, Pint, Stylua) |
-| `Space + s + r` | Loyiha bo'yicha so'zlarni ommaviy almashtirish (Grug-far) |
-| `Space + u` | O'zgarishlar tarixi daraxti (Undotree) |
-| `p` | Joylashtirish (Paste) |
 | `Space + p` (visualda) | Nusxalangan matnni almashtirib yubormasdan ustiga qo'yish |
-| `Ctrl + p` / `Ctrl + n` | `p` dan keyin: oldin nusxalangan matnlarni almashtirib ko'rish (Yanky) |
-| `Space + y` | Nusxalangan matnlar tarixi ro'yxati |
 | `Ctrl + \` | Tezkor suzuvchi (float) terminalni ochish / yashirish (Snacks) |
 | `Space + l` | Lazy plagin menejerini ochish |
 
@@ -114,18 +107,12 @@ Terminal buyruqlari:
 | `Space + g + g` | LazyGit oynasini ochish |
 | `Space + g + d` | Git o'zgarishlarni taqqoslash (Diffview) |
 | `Space + g + h` | Faylning commitlar tarixi |
-| `Space + g + p` | GitHub Pull Requestlar ro'yxati (Octo) |
-| `Space + g + i` | GitHub Issuelar ro'yxati |
 | `] + c` / `[ + c` | Keyingi / oldingi o'zgargan blokka (hunk) sakrash |
 | `Space + h + p` | Hunk o'zgarishini float oynada ko'rish (preview) |
 | `Space + h + s` | Hunkni stage qilish |
 | `Space + h + r` | Hunkni bekor qilish (reset) |
 | `Space + h + b` | Qator uchun to'liq git blame |
 | `Space + t + b` | Inline blame matnini yoqish / o'chirish |
-| `co` | Merge konfliktda: bizning tarafni olish |
-| `ct` | Merge konfliktda: ularning tarafini olish |
-| `cb` | Merge konfliktda: ikkala tarafni ham saqlash |
-| `]x` / `[x` | Keyingi / oldingi konfliktga sakrash |
 
 ---
 
