@@ -8,9 +8,7 @@ return {
       bigfile = { enabled = true },
       notifier = { enabled = true, timeout = 3000 },
       quickfile = { enabled = true },
-      statuscolumn = { enabled = false },
       scroll = { enabled = true },
-      words = { enabled = false },
       image = {
         enabled = true,
         doc = {
@@ -22,20 +20,12 @@ return {
       indent = {
         enabled = true,
         char = "│",
-        only_scope = false,
-        only_current = false,
         animate = { enabled = false },
         scope = { enabled = true, char = "│" },
       },
       picker = {
         enabled = true,
         ui_select = true,
-        sources = {
-          files = {
-            hidden = false,
-            ignored = false,
-          },
-        },
       },
       lazygit = {
         enabled = true,
@@ -53,15 +43,9 @@ return {
       vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = "#6e94b2" })
       require("snacks").setup(opts)
 
-      -- Floating terminal toggle (<C-\>)
+      -- Floating terminal toggle (<C-\>); window style comes from opts.terminal.win
       vim.keymap.set({ "n", "t" }, "<C-\x5c>", function()
-        Snacks.terminal.toggle(nil, {
-          win = {
-            style = "float",
-            border = "rounded",
-            position = "float",
-          },
-        })
+        Snacks.terminal.toggle()
       end, { desc = "Toggle terminal", silent = true })
 
       -- Optimize terminal buffer performance

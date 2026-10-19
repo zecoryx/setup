@@ -8,7 +8,6 @@ opt.relativenumber = true
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
-opt.autoindent = true
 opt.smartindent = true
 
 -- Line wrapping
@@ -17,8 +16,6 @@ opt.wrap = false
 -- Search settings
 opt.ignorecase = true
 opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
 
 -- Visuals & UX (Clean bottom area)
 opt.termguicolors = true
@@ -48,7 +45,4 @@ end)
 -- Undo & Backup
 opt.undofile = true
 opt.swapfile = false
-opt.backup = false
 
--- Whitespace
-opt.list = false

@@ -36,6 +36,7 @@ Terminal buyruqlari:
 | :--- | :--- |
 | `Space + v` | Vertikal split (yonma-yon oyna ochish) |
 | `Space + h` | Gorizontal split (tepa-pastga oyna ochish) |
+| `Space + g + ...` | Git amallari bitta prefiks ostida — pastdagi "Git" bo'limiga qarang |
 | `Space + x` | Hozirgi splitni yopish |
 | `Space + m` | Splitni butun ekranga kattalashtirish / qaytarish (Maximize) |
 | `Space + =` | Barcha splitlarni tenglashtirish |
@@ -108,10 +109,10 @@ Terminal buyruqlari:
 | `Space + g + d` | Git o'zgarishlarni taqqoslash (Diffview) |
 | `Space + g + h` | Faylning commitlar tarixi |
 | `] + c` / `[ + c` | Keyingi / oldingi o'zgargan blokka (hunk) sakrash |
-| `Space + h + p` | Hunk o'zgarishini float oynada ko'rish (preview) |
-| `Space + h + s` | Hunkni stage qilish |
-| `Space + h + r` | Hunkni bekor qilish (reset) |
-| `Space + h + b` | Qator uchun to'liq git blame |
+| `Space + g + p` | Hunk o'zgarishini float oynada ko'rish (preview) |
+| `Space + g + s` | Hunkni stage qilish |
+| `Space + g + r` | Hunkni bekor qilish (reset) |
+| `Space + g + b` | Qator uchun to'liq git blame |
 | `Space + t + b` | Inline blame matnini yoqish / o'chirish |
 
 ---

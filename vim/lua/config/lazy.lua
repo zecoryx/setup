@@ -33,13 +33,15 @@ require("lazy").setup({
     border = "rounded",
   },
 
-  -- Startup optimization: disable unused built-in Vim plugins
+  -- No update polling, no "config changed" toasts
   checker = {
     enabled = false,
   },
   change_detection = {
     notify = false,
   },
+
+  -- Disable unused built-in Vim plugins (this also sets vim.g.loaded_netrw)
   performance = {
     rtp = {
       disabled_plugins = {

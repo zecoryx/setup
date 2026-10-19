@@ -87,7 +87,7 @@ setup/vim/
 - **`treesitter.lua`**: Kod sintaksisini daraxt ko'rinishida tahlil qiladi (AST). Ranglash uchun asosiy dvigatel. `main` branch ishlatiladi va 14 til parseri avtomatik o'rnatiladi.
 - **`formatting.lua`**: `conform.nvim` yordamida faylni saqlash vaqtida avtomatik formatlash (`format_on_save`). Har bir til uchun kerakli formatlagichni ulaydi: `prettierd`/`prettier` (JS, TS, JSON, HTML, CSS), `pint` (PHP), `stylua` (Lua).
 - **`git.lua`**: ikki plagin:
-  - `gitsigns.nvim`: chap chekkada qo'shilgan/o'zgartirilgan/o'chirilgan qatorlar, inline blame va hunk boshqaruvi (`]c`, `<leader>hp`, `<leader>hs`).
+  - `gitsigns.nvim`: chap chekkada qo'shilgan/o'zgartirilgan/o'chirilgan qatorlar, inline blame va hunk boshqaruvi (`]c`, `<leader>gp`, `<leader>gs`).
   - `diffview.nvim`: o'zgarishlarni yonma-yon taqqoslash va fayl tarixi (`<leader>gd`, `<leader>gh`) - **agent yozgan kodni review qilish uchun asosiy vosita**.
 - **`editor.lua`**: Matn tahrirlash qulayliklari:
   - `mini.pairs`: Qavslar va qo'shtirnoqlarni avtomatik juftlash.
