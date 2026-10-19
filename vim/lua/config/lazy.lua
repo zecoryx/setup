@@ -48,6 +48,12 @@ require("lazy").setup({
   },
 
   -- Startup optimization: disable unused built-in Vim plugins
+  checker = {
+    enabled = false,
+  },
+  change_detection = {
+    notify = false,
+  },
   performance = {
     rtp = {
       disabled_plugins = {
