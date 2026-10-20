@@ -4,13 +4,13 @@ local map = vim.keymap.set
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- Window splits & layout
-map("n", "<leader>v", "<C-w>v", { desc = "Vertical split" })
-map("n", "<leader>h", "<C-w>s", { desc = "Horizontal split" })
-map("n", "<leader>x", "<C-w>c", { desc = "Close current split" })
-map("n", "<leader>=", "<C-w>=", { desc = "Equalize split sizes" })
+map("n", "<leader>wv", "<C-w>v", { desc = "Vertical split" })
+map("n", "<leader>wh", "<C-w>s", { desc = "Horizontal split" })
+map("n", "<leader>wx", "<C-w>c", { desc = "Close current split" })
+map("n", "<leader>w=", "<C-w>=", { desc = "Equalize split sizes" })
 
 -- Window split zoom / maximize toggle
-map("n", "<leader>z", function()
+map("n", "<leader>wz", function()
   if vim.t.maximized then
     vim.cmd("wincmd =")
     vim.t.maximized = false

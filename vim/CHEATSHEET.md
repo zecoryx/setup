@@ -34,13 +34,17 @@ Terminal buyruqlari:
 ### Neovim ichida:
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Space + v` | Vertikal split (yonma-yon oyna ochish) |
-| `Space + h` | Gorizontal split (tepa-pastga oyna ochish) |
-| `Space + g + ...` | Git amallari bitta prefiks ostida — pastdagi "Git" bo'limiga qarang |
-| `Space + x` | Hozirgi splitni yopish |
-| `Space + z` | Splitni butun ekranga kattalashtirish / qaytarish — **tmux `Prefix + z` bilan bir xil harf** |
-| `Space + =` | Barcha splitlarni tenglashtirish |
-| `Ctrl + h / j / k / l` | Splitlar orasida harakatlanish |
+> **Barcha split amallari `Space + w` ostida** (w = window). Bosganingizda menyu o'zi chiqadi.
+> Ikkinchi harf tmux bilan **aynan bir xil**: `v`, `h`, `x`, `z`.
+
+| Tugma | Vazifasi |
+| :--- | :--- |
+| `Space + w` keyin `v` | Vertikal split (yonma-yon oyna ochish) |
+| `Space + w` keyin `h` | Gorizontal split (tepa-pastga oyna ochish) |
+| `Space + w` keyin `x` | Hozirgi splitni yopish |
+| `Space + w` keyin `z` | Splitni butun ekranga kattalashtirish / qaytarish |
+| `Space + w` keyin `=` | Barcha splitlarni tenglashtirish |
+| `Ctrl + h / j / k / l` | Splitlar orasida harakatlanish (prefiks kerak emas) |
 | `Shift + Strelkalar` | Split o'lchamini o'zgartirish — **nvim ichida nvim splitini, shellda tmux panelini** (`Ctrl+h/j/k/l` kabi) |
 
 ### Tmux ichida:
