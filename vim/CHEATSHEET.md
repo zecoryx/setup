@@ -1,159 +1,112 @@
-# Klaviatura Shpargalkasi (Cheatsheet)
+# Klaviatura Shpargalkasi
+
+Faqat **kundalik ishlatiladiganlar**. Qolganini yodlash shart emas — pastdagi
+"Qolganini qanday topish" bo'limiga qarang.
+
+```
+  SESSIYA (loyiha)  →  WINDOW (tab)  →  PANEL (split)  →  NEOVIM
+  Ctrl+Space f         Alt+Shift+h/l    Ctrl+h/j/k/l      Space ...
+```
 
 ---
 
-## 1. Tmux va Sessiyalar
-> Eslatma: `Ctrl + Space` bosib qo'yib yuboriladi, keyin kerakli harf bosiladi.
+## Eng ko'p bosiladigan 6 ta
 
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Ctrl + Space` keyin `f` | **Sessiya/loyiha menejeri** (fzf popup: ochiq sessiyalar + `~/Projects`) |
-| `Ctrl + Space` keyin `s` | Barcha sessiyalar daraxti (`Enter` — kirish, `x` keyin `y` — o'chirish) |
-| `Ctrl + Space` keyin `w` | Barcha oynalar (windows) daraxti |
-| `Ctrl + Space` keyin `Ctrl + s` | Hozirgi sessiyalarni xotiraga saqlash |
-| `Ctrl + Space` keyin `Ctrl + r` | Saqlangan sessiyalarni qayta tiklash |
-| `Ctrl + Space` keyin `r` | Sessiya nomini o'zgartirish |
-| `Ctrl + Space` keyin `d` | Sessiyadan chiqish (orqa fonda qoladi) |
-| `Ctrl + Space` keyin `c` | Yangi oyna (window) ochish |
-| `Shift + Alt + h` / `l` | Oynalar (tablar) bo'yicha chapga / o'ngga o'tish |
-| `Ctrl + Space` keyin `g` | Nomi bo'yicha sessiyaga o'tish (sessionist) |
-| `Ctrl + Space` keyin `S` | Oxirgi ikki sessiya orasida tez almashish (sessionist) |
-| `Ctrl + Space` keyin `X` | Hozirgi sessiyani o'chirish (sessionist) |
-
-Terminal buyruqlari:
-* `tmux attach` — Oxirgi sessiyaga ulanish
-* `tmux attach -t <nomi>` — Aniq bitta sessiyaga ulanish
-* `tmux list-sessions` — Barcha sessiyalar ro'yxatini ko'rish
-* `ts` — Sessiya/loyiha menejerini terminaldan ochish (`Prefix + f` bilan bir xil)
+| `Ctrl+h` `j` `k` `l` | Panellar va splitlar orasida yurish — **prefiks kerak emas** |
+| `Space` `s` `f` | Fayl topish (nomi bo'yicha) |
+| `Space` `s` `s` | Matn qidirish (butun loyiha) |
+| `H` / `L` | Oldingi / keyingi fayl (bufer) |
+| `g` `d` | Funksiya yaratilgan joyiga sakrash |
+| `K` | Tip va dokumentatsiyani ko'rish |
 
 ---
 
-## 2. Panellar (Tmux)
+## Tmux
 
-> Oynalarni bo'lish **tmux'ning ishi**. Neovimda split tugmalari ataylab yo'q.
-> Diffview yoki picker o'zi split ochsa, vim'ning o'z buyruqlari ishlaydi:
-> `Ctrl+w` keyin `c` (yopish), `o` (faqat shuni qoldirish), `=` (tenglashtirish).
-
-### Bo'lish va yopish
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Ctrl + Space` keyin `v` | **Yonma-yon** bo'lish (vertikal chiziq) |
-| `Ctrl + Space` keyin `h` | **Tepa-past** bo'lish (gorizontal chiziq) |
-| `Ctrl + Space` keyin `x` | Panelni yopish |
-| `Ctrl + Space` keyin `z` | Kattalashtirish / qaytarish (Zoom) |
+| `Ctrl+Space` `f` | **Sessiya / loyiha menejeri** |
+| `Alt+Shift+h` / `l` | Window (tab) almashtirish |
+| `Ctrl+Space` `c` | Yangi window |
+| `Ctrl+Space` `v` | Yonma-yon bo'lish |
+| `Ctrl+Space` `h` | Tepa-past bo'lish |
+| `Ctrl+Space` `x` | Panelni yopish |
+| `Ctrl+Space` `z` | Kattalashtirish / qaytarish |
+| `Shift` + strelka | Panel o'lchami (chap/o'ng = width, tepa/past = height) |
+| `Ctrl+Space` `d` | Sessiyadan chiqish (fonda qoladi) |
 
-### O'lcham — uch xil aniqlik
-| Tugma | Qadam | Izoh |
-| :--- | :--- | :--- |
-| `Shift` + strelka | 4 katak | **Prefiks kerak emas** — eng tez |
-| `Ctrl+Space` keyin `Alt` + strelka | 5 katak | Prefiksni bir marta bosib, strelkani qayta-qayta bosaverasiz |
-| `Ctrl+Space` keyin `Ctrl` + strelka | **1 katak** | Aniq sozlash uchun |
+## Neovim — fayl va qidiruv
 
-Chap/o'ng = **width**, tepa/past = **height**.
-
-### Layout — bir buyruq bilan tartibga solish
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Ctrl + Space` keyin `E` | Hammasini teng taqsimlash |
-| `Ctrl + Space` keyin `Space` | Layoutlarni navbat bilan aylantirish |
-| `Ctrl + Space` keyin `Alt+1` | Hammasi yonma-yon |
-| `Ctrl + Space` keyin `Alt+2` | Hammasi tepa-past |
-| `Ctrl + Space` keyin `Alt+5` | Plitka (tiled) — 4+ panel uchun |
-| `Ctrl + Space` keyin `{` / `}` | Panelning joyini oldinga / orqaga surish |
+| `Space` `s` `f` | Fayl nomi bo'yicha |
+| `Space` `s` `s` | Matn — butun loyiha |
+| `Space` `s` `b` | Ochiq fayllar ro'yxati |
+| `Space` `s` `/` | Matn — faqat ochiq fayllar |
+| `Space` `e` | Fayl menejeri (Oil) — loyiha ildizi |
+| `-` | Fayl menejeri — yuqori papka |
+| `Space` `q` | Hozirgi faylni yopish |
+| `/` | Hozirgi fayl ichida qidirish |
+| `Esc` | Qidiruv highlightini tozalash |
 
-### Harakat
+**Qidiruv oynasi ichida:** `Ctrl+j`/`Ctrl+k` — yurish · `Enter` — ochish ·
+**`Ctrl+v` — splitda ochish** · `Esc` — bekor qilish
+
+## Neovim — kod
+
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Ctrl + h / j / k / l` | Panellar orasida yo'nalish bo'yicha — **prefiks kerak emas**. Neovim ichida split bo'lsa, avval ular orasida yuradi, chetiga yetgach tmux paneliga o'tadi |
+| `g` `d` | Definition — yaratilgan joyiga |
+| `g` `r` | References — qayerlarda ishlatilgan |
+| `K` | Hover — tip va dokumentatsiya |
+| `Space` `c` `a` | Code Action — auto-import, tezkor tuzatish |
+| `Space` `c` `r` | Rename — butun loyiha bo'ylab |
+| `Space` `c` `f` | Formatlash |
+| `]` `d` / `[` `d` | Keyingi / oldingi xatoga sakrash |
+| `g` `c` `c` | Qatorni izohga aylantirish |
+| `s` | Flash — ekranda istalgan joyga 2 harfda sakrash |
+
+## Neovim — git
+
+| Tugma | Vazifasi |
+| :--- | :--- |
+| `Space` `g` `g` | **LazyGit** |
+| `Space` `g` `d` | **Diffview** — o'zgarishlarni taqqoslash |
+| `]` `c` / `[` `c` | Keyingi / oldingi o'zgargan blok |
+| `Space` `g` `p` | Blok o'zgarishini ko'rish |
+| `Space` `g` `s` | Blokni stage qilish |
+| `Space` `g` `r` | Blokni bekor qilish |
+
+## Neovim — vositalar
+
+| Tugma | Vazifasi |
+| :--- | :--- |
+| `Ctrl+\` | Suzuvchi terminal |
+| `Space` `d` | Lazydocker |
+| `Space` `p` | Lazysql |
 
 ---
 
-## 3. Fayllar va Qidiruv (Neovim)
+## Qolganini qanday topish
 
-> **Barcha qidiruvlar `Space + s` ostida.** Uni bosganingizda menyu o'zi chiqadi —
-> hech narsa yodlash shart emas:
->
-> ```
->  Space + s  →   f   fayl nomi bo'yicha   (butun loyiha)
->                 b   ochiq fayllar
->                 s   matn ichidan         (butun loyiha)
->                 /   matn ichidan         (faqat ochiq fayllar)
->
->  /          →   hozirgi fayl ichida (oddiy vim qidiruvi, leader kerak emas)
-> ```
+Hammasini yodlash shart emas — ikkala dastur ham **o'zi ko'rsatadi**:
+
+| Bosing | Nima bo'ladi |
+| :--- | :--- |
+| `Space` va kuting | Neovimning barcha tugmalari menyusi chiqadi |
+| `Space` `g` (yoki `s`, `c`, `t`) | Shu guruh ichidagilar ro'yxati |
+| `Ctrl+Space` `?` | tmux'ning **barcha** tugmalari ro'yxati |
+| `Ctrl+Space` `q` | Panellarga raqam chiqadi — ko'p panel bo'lganda |
+
+### Kamdan-kam, lekin kerak bo'lganda
 
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Space + s` keyin `f` | Fayl **nomi** bo'yicha qidiruv (butun loyiha) |
-| `Space + s` keyin `s` | **Matn** qidirish (butun loyiha, o'zim yozaman) |
-| `Space + s` keyin `/` | **Matn** qidirish — faqat ochiq fayllar ichida |
-| `Space + o` | Hozirgi fayl turgan papkani ochish (Oil explorer) |
-| `Space + e` | Loyihaning bosh ildiz papkasini ochish (Oil project root) |
-| `-` (minus) | Papkalar iyerarxiyasida 1 qadam yuqoriga / orqaga chiqish |
-| `Space + s` keyin `b` | Ochiq turgan fayllar ro'yxati (Buffers picker) |
-| `H` / `L` | Ochiq fayllar orasida chapga / o'ngga o'tish |
-| `Space + q` | Hozirgi faylni yopish (buffer) |
-
----
-
-## 4. LSP, Kod Navigatsiyasi va Diagnostika
-
-| Tugma | Vazifasi |
-| :--- | :--- |
-| `g + d` | Go to Definition (Funksiya/o'zgaruvchi yaratilgan joyiga sakrash) |
-| `g + D` | Go to Declaration (E'lon qilingan joyiga sakrash) |
-| `g + r` | References (Kodning qayerlarida ishlatilgani ro'yxati) |
-| `g + i` | Implementation (Interfeysning amalga oshirilgan joyi) |
-| `g + y` | Type Definition (Tip ta'riflangan joyi) |
-| `K` | Hover Docs (Funksiya/klass tipi va dokumentatsiyasini float oynada ko'rish) |
-| `g + K` | Signature Help (Funksiya qabul qiluvchi argumentlar ro'yxati) |
-| `Space + c + a` | Code Action (Auto-import, tezkor tuzatishlar va refaktoring) |
-| `Space + c + r` | Rename Symbol (Nomini butun loyiha bo'ylab xavfsiz o'zgartirish) |
-| `[ + d` / `] + d` | Oldingi / keyingi xatolik yoki ogohlantirishga sakrash |
-| `Space + c + d` | Kursordagi diagnostika (xatolik) matnini float oynada to'liq ko'rish |
-| `Space + t + h` | Inlay Hints (kod ustidagi yashirin tiplarni ko'rsatish/yashirish) |
-
----
-
-## 5. Kodlash, Terminallar va Tahrirlash
-
-| Tugma | Vazifasi |
-| :--- | :--- |
-| `s` | Flash: ko'rinib turgan istalgan so'zga 2 harfda sakrash |
-| `Space + c + f` | Kodni tekislash/formatlash (Conform: Prettier, Pint, Stylua) |
-| `Space + p` (visualda) | Nusxalangan matnni almashtirib yubormasdan ustiga qo'yish |
-| `Ctrl + \` | Tezkor suzuvchi (float) terminalni ochish / yashirish (Snacks) |
-| `Space + l` | Lazy plagin menejerini ochish |
-
----
-
-## 6. Git va GitHub
-
-| Tugma | Vazifasi |
-| :--- | :--- |
-| `Space + g + g` | LazyGit oynasini ochish |
-| `Space + d` | Lazydocker (suzuvchi terminalda) |
-| `Space + p` | Lazysql (suzuvchi terminalda) |
-| `Space + g + d` | Git o'zgarishlarni taqqoslash (Diffview) |
-| `Space + g + h` | Faylning commitlar tarixi |
-| `] + c` / `[ + c` | Keyingi / oldingi o'zgargan blokka (hunk) sakrash |
-| `Space + g + p` | Hunk o'zgarishini float oynada ko'rish (preview) |
-| `Space + g + s` | Hunkni stage qilish |
-| `Space + g + r` | Hunkni bekor qilish (reset) |
-| `Space + g + b` | Qator uchun to'liq git blame |
-| `Space + t + b` | Inline blame matnini yoqish / o'chirish |
-
----
-
-## 7. Asosiy Vim Tugmalari
-
-| Tugma | Vazifasi |
-| :--- | :--- |
-| `w` / `b` | So'zma-so'z oldinga / orqaga sakrash |
-| `0` / `$` | Qator boshi / qator oxiri |
-| `gg` / `G` | Faylning eng boshiga / eng oxiriga sakrash |
-| `:15` | 15-qatorga to'g'ridan-to'g'ri sakrash |
-| `Ctrl + d` / `Ctrl + u` | Yarim sahifa pastga / tepaga silliq aylantirish |
-| `dd` / `yy` | Qatorni qirqib olish / nusxalash |
-| `u` / `Ctrl + r` | Bekor qilish (Undo) / qaytarish (Redo) |
-| `o` / `O` | Pastdan / tepadan yangi qator ochib yozish |
+| `Ctrl+Space` `;` | Oxirgi ikki panel orasida tez almashish |
+| `Ctrl+Space` `l` | Oxirgi ikki window orasida tez almashish |
+| `Ctrl+Space` `E` | Panellarni teng taqsimlash |
+| `Ctrl+Space` `[` | Copy mode — tepaga aylantirish va nusxalash |
+| `Ctrl+Space` `Ctrl+s` / `Ctrl+r` | Sessiyalarni saqlash / tiklash |
+| `Ctrl+w` `c` | Neovimda ochilib qolgan splitni yopish |
