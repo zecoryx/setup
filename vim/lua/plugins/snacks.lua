@@ -72,8 +72,9 @@ return {
       { "<leader>ss", function() Snacks.picker.grep() end, desc = "Text in project" },
       { "<leader>s/", function() Snacks.picker.grep_buffers() end, desc = "Text in open buffers" },
 
-      { "<leader>i", function() Snacks.image.hover() end, desc = "Image preview" },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit floating window" },
+      { "<leader>d", function() Snacks.terminal("lazydocker") end, desc = "Lazydocker" },
+      { "<leader>p", function() Snacks.terminal("lazysql") end, desc = "Lazysql" },
     },
   },
 }

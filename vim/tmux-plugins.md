@@ -48,25 +48,28 @@ repodagi o'z skripti bor: `tmux/bin/tmux-session-manager`.
 - **Tugmalar**: `Enter` — ulanish/almashish, `Ctrl+x` — sessiyani o'chirish, `Ctrl+n` — yangi sessiya.
 - **Bog'liqlik**: faqat `fzf`.
 
-## 2.1. Vositalar Menyusi (`Prefix + o`)
+## 2.1. TUI Vositalari — Neovimda, tmuxda emas
 
-Tahrirlanayotgan faylga bog'liq bo'lmagan TUI vositalari bitta menyu ortida yig'ilgan,
-shunda uchta alohida tugmani yodlash kerak bo'lmaydi — menyu o'zi nimani ocha olishini ko'rsatadi.
+`lazygit`, `lazydocker` va `lazysql` **Neovim ichidan** ochiladi, har biri o'z tugmasida:
 
-| Menyudagi tugma | Vosita | Joylashuvi |
+| Tugma | Vosita | Joylashuvi |
 |---|---|---|
-| `g` | `lazygit` | `/usr/bin/lazygit` |
-| `d` | `lazydocker` | `/usr/bin/lazydocker` |
-| `s` | `lazysql` | `~/.local/bin/lazysql` |
-| `f` | sessiya menejeri | `~/.local/bin/ts` |
+| `<leader>gg` | `lazygit` | `/usr/bin/lazygit` |
+| `<leader>d` | `lazydocker` | `/usr/bin/lazydocker` |
+| `<leader>p` | `lazysql` | `~/.local/bin/lazysql` |
 
-Hammasi `display-popup` oynasida ochiladi, ya'ni joriy panel buzilmaydi.
+Avval tmuxda `Prefix + o` menyusi bor edi; u olib tashlandi, chunki uchala vosita ham
+endi Neovimda alohida tugmaga ega va menyu faqat takror bo'lib qolgandi.
+Sessiya menejeri esa o'z tugmasida qoladi: `Prefix + f`.
 
 > `lazydocker` docker demoni ishlab turishini talab qiladi. Demon `enable` qilinmagan,
 > shuning uchun qayta yuklangandan keyin `sudo systemctl start docker` kerak bo'lishi mumkin.
 >
 > `lazysql`da saqlangan ulanish yo'q (`~/.config/lazysql/` mavjud emas), shuning uchun
 > birinchi ochilganda ulanish ma'lumotlarini so'raydi.
+>
+> Eslatma: bular endi Neovim ochiq bo'lgandagina bir tugma bilan ochiladi. Oddiy shell
+> panelida `lazydocker` / `lazysql` deb yozish kerak.
 
 > Eslatma: `tmux-sessionx` va `tmux-fzf` plaginlari avval diskda yotgan, lekin `tmux.conf`da
 > ro'yxatdan o'tmagani uchun hech qachon yuklanmagan. Yuqoridagi skript ularning ishini
