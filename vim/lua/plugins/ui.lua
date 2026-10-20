@@ -103,7 +103,6 @@ return {
       },
       spec = {
         { "<leader>s", group = "Search" },
-        { "<leader>w", group = "Windows / splits" },
         { "<leader>g", group = "Git tools / hunks" },
         { "<leader>c", group = "Code actions / Format" },
         { "<leader>t", group = "Toggles" },

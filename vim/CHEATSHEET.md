@@ -28,31 +28,43 @@ Terminal buyruqlari:
 
 ---
 
-## 2. Splitlar va Harakat (Tmux + Neovim bir xil va sodda)
+## 2. Panellar (Tmux)
 
-### Neovim ichida:
+> Oynalarni bo'lish **tmux'ning ishi**. Neovimda split tugmalari ataylab yo'q.
+> Diffview yoki picker o'zi split ochsa, vim'ning o'z buyruqlari ishlaydi:
+> `Ctrl+w` keyin `c` (yopish), `o` (faqat shuni qoldirish), `=` (tenglashtirish).
+
+### Bo'lish va yopish
 | Tugma | Vazifasi |
 | :--- | :--- |
-> **Barcha split amallari `Space + w` ostida** (w = window). Bosganingizda menyu o'zi chiqadi.
-> Ikkinchi harf tmux bilan **aynan bir xil**: `v`, `h`, `x`, `z`.
+| `Ctrl + Space` keyin `v` | **Yonma-yon** bo'lish (vertikal chiziq) |
+| `Ctrl + Space` keyin `h` | **Tepa-past** bo'lish (gorizontal chiziq) |
+| `Ctrl + Space` keyin `x` | Panelni yopish |
+| `Ctrl + Space` keyin `z` | Kattalashtirish / qaytarish (Zoom) |
 
+### O'lcham — uch xil aniqlik
+| Tugma | Qadam | Izoh |
+| :--- | :--- | :--- |
+| `Shift` + strelka | 4 katak | **Prefiks kerak emas** — eng tez |
+| `Ctrl+Space` keyin `Alt` + strelka | 5 katak | Prefiksni bir marta bosib, strelkani qayta-qayta bosaverasiz |
+| `Ctrl+Space` keyin `Ctrl` + strelka | **1 katak** | Aniq sozlash uchun |
+
+Chap/o'ng = **width**, tepa/past = **height**.
+
+### Layout — bir buyruq bilan tartibga solish
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Space + w` keyin `v` | Vertikal split (yonma-yon oyna ochish) |
-| `Space + w` keyin `h` | Gorizontal split (tepa-pastga oyna ochish) |
-| `Space + w` keyin `x` | Hozirgi splitni yopish |
-| `Space + w` keyin `z` | Splitni butun ekranga kattalashtirish / qaytarish |
-| `Space + w` keyin `=` | Barcha splitlarni tenglashtirish |
-| `Ctrl + h / j / k / l` | Splitlar orasida harakatlanish (prefiks kerak emas) |
-| `Shift + Strelkalar` | Split o'lchamini o'zgartirish — **nvim ichida nvim splitini, shellda tmux panelini** (`Ctrl+h/j/k/l` kabi) |
+| `Ctrl + Space` keyin `E` | Hammasini teng taqsimlash |
+| `Ctrl + Space` keyin `Space` | Layoutlarni navbat bilan aylantirish |
+| `Ctrl + Space` keyin `Alt+1` | Hammasi yonma-yon |
+| `Ctrl + Space` keyin `Alt+2` | Hammasi tepa-past |
+| `Ctrl + Space` keyin `Alt+5` | Plitka (tiled) — 4+ panel uchun |
+| `Ctrl + Space` keyin `{` / `}` | Panelning joyini oldinga / orqaga surish |
 
-### Tmux ichida:
+### Harakat
 | Tugma | Vazifasi |
 | :--- | :--- |
-| `Ctrl + Space` keyin `v` | Vertikal split (yonma-yon o'ngga) |
-| `Ctrl + Space` keyin `h` | Gorizontal split (tepa-pastga) |
-| `Ctrl + Space` keyin `x` | Hozirgi splitni yopish |
-| `Ctrl + Space` keyin `z` | Splitni butun ekranga kattalashtirish / qaytarish (Zoom) |
+| `Ctrl + h / j / k / l` | Panellar orasida yo'nalish bo'yicha — **prefiks kerak emas**. Neovim ichida split bo'lsa, avval ular orasida yuradi, chetiga yetgach tmux paneliga o'tadi |
 
 ---
 

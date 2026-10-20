@@ -64,7 +64,7 @@ setup/vim/
 ### Asosiy Sozlamalar (`lua/config/`)
 - **`options.lua`**: Vimning asosiy harakatlarini belgilaydi: 4 bo'shliqli tablar (`tabstop = 4`, `shiftwidth = 4`, `expandtab = true`), qator raqamlari (`number`, `relativenumber`), tizim clipboard integratsiyasi (`unnamedplus`), kursor harakati, vaqtinchalik swap fayllarini o'chirish va undofile orqali o'zgarishlar tarixini doimiy saqlash.
 - **`lazy.lua`**: `lazy.nvim` plagin menejerining bootstrap qismi. Agar plagin menejeri diskda bo'lmasa, uni avtomatik yuklab oladi va `lua/plugins/` papkasidagi barcha modullarni avtomatik skanerlash qilib ulaydi.
-- **`keymaps.lua`**: Plaginlarga bog'liq bo'lmagan yoki umumiy tizim miqyosidagi global tugmalar: oyna ajratish `<leader>w` guruhi ostida (`wv`, `wh`, `wx`, `wz`, `w=`) va o'lchamlash, bufer/tablar o'rtasida navigatsiya (`H`/`L`), qidiruv highlightini `Esc` bilan tozalash, visual rejimda qatorlarni ko'chirish (`J`/`K`) va Oil chaqiruvlari (`-`, `<leader>o`, `<leader>e`).
+- **`keymaps.lua`**: Plaginlarga bog'liq bo'lmagan yoki umumiy tizim miqyosidagi global tugmalar: oyna ajratish tugmalari **ataylab yo'q** (panellar tmux ishi), o'lchamlash, bufer/tablar o'rtasida navigatsiya (`H`/`L`), qidiruv highlightini `Esc` bilan tozalash, visual rejimda qatorlarni ko'chirish (`J`/`K`) va Oil chaqiruvlari (`-`, `<leader>o`, `<leader>e`).
 
 ### Plaginlar Modullari (`lua/plugins/`)
 - **`ui.lua`**: Vizual ko'rinish va ergonomika:
